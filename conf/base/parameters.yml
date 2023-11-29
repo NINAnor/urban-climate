@@ -24,7 +24,7 @@ dst_crs: "${globals:dst_crs}"
 scaling_factor: 100
 
 # param for node stack_to_gdf
-#path_to_stack: "/home/willeke.acampo/git/ac-willeke/urban-climate/data/02_intermediate/${globals:municipality}_raster_stack_100m_25833_copy.tif"
+path_to_stack: "/workspaces/urban-climate/data/02_intermediate/${globals:municipality}_raster_stack_100m_25833_copy.tif"
 
 lst_acquisition_year:
   baerum: 2018

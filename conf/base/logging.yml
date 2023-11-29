@@ -43,7 +43,7 @@ loggers:
   kedro:
     level: INFO
 
-  urban_climate_services:
+  urban_climate:
     level: INFO
 
 root:

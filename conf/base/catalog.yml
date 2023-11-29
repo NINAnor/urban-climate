@@ -9,37 +9,37 @@
 
 # vectors
 study_area:
-  type: geopandas.GeoJSONDataSet
+  type: geopandas.GeoJSONDataset
   filepath: data/01_raw/${globals:municipality}_study_area.geojson
 
 district_statistics:
-  type: geopandas.GeoJSONDataSet
+  type: geopandas.GeoJSONDataset
   filepath: data/01_raw/${globals:municipality}_district_statistics.geojson  
 
 # rasters
 terrain:
-  type: urban_climate_services.custom_datasets.geotiff_dataset.GeoTIFFDataSet
+  type: urban_climate.custom_datasets.geotiff_dataset.GeoTIFFDataSet
   filepath: data/01_raw/${globals:municipality}_dtm_100m_msk.tif
   load_args:
     mask: True
     mask_path: ${globals:mask_path}
 
 landcover_fraction:
-  type: urban_climate_services.custom_datasets.geotiff_dataset.GeoTIFFDataSet
+  type: urban_climate.custom_datasets.geotiff_dataset.GeoTIFFDataSet
   filepath: data/01_raw/${globals:municipality}_lcf_100m_msk.tif
   load_args:
     mask: True
     mask_path: ${globals:mask_path}
 
 land_surface_temperature:
-  type: urban_climate_services.custom_datasets.geotiff_dataset.GeoTIFFDataSet
+  type: urban_climate.custom_datasets.geotiff_dataset.GeoTIFFDataSet
   filepath: data/01_raw/${globals:municipality}_lst_100m_msk.tif
   load_args:
     mask: True
     mask_path: ${globals:mask_path}
 
 canopy_fraction:
-  type: urban_climate_services.custom_datasets.geotiff_dataset.GeoTIFFDataSet
+  type: urban_climate.custom_datasets.geotiff_dataset.GeoTIFFDataSet
   filepath: data/01_raw/${globals:municipality}_cf_100m.tif
   load_args:
     mask: True
@@ -49,41 +49,41 @@ canopy_fraction:
 # INTERIM
 # -----------------------------------------------------------
 masked_terrain:
-  type: urban_climate_services.custom_datasets.geotiff_dataset.GeoTIFFDataSet
+  type: urban_climate.custom_datasets.geotiff_dataset.GeoTIFFDataSet
   filepath: data/02_intermediate/${globals:municipality}_dtm_100m_mask.tif
 
 masked_landcover_fraction:
-  type: urban_climate_services.custom_datasets.geotiff_dataset.GeoTIFFDataSet
+  type: urban_climate.custom_datasets.geotiff_dataset.GeoTIFFDataSet
   filepath: data/02_intermediate/${globals:municipality}_lcf_100m_mask.tif
 
 masked_land_surface_temperature:
-  type: urban_climate_services.custom_datasets.geotiff_dataset.GeoTIFFDataSet
+  type: urban_climate.custom_datasets.geotiff_dataset.GeoTIFFDataSet
   filepath: data/02_intermediate/${globals:municipality}_lst_100m_mask.tif
 
 masked_canopy_fraction:
-  type: urban_climate_services.custom_datasets.geotiff_dataset.GeoTIFFDataSet
+  type: urban_climate.custom_datasets.geotiff_dataset.GeoTIFFDataSet
   filepath: data/02_intermediate/${globals:municipality}_cf_100m_mask.tif
 
 # reprojected
 r_masked_terrain:
-  type: urban_climate_services.custom_datasets.geotiff_dataset.GeoTIFFDataSet
+  type: urban_climate.custom_datasets.geotiff_dataset.GeoTIFFDataSet
   filepath: data/02_intermediate/${globals:municipality}_dtm_100m_${globals:dst_crs_code}.tif
 
 r_masked_landcover_fraction:
-  type: urban_climate_services.custom_datasets.geotiff_dataset.GeoTIFFDataSet
+  type: urban_climate.custom_datasets.geotiff_dataset.GeoTIFFDataSet
   filepath: data/02_intermediate/${globals:municipality}_lcf_100m_${globals:dst_crs_code}.tif
 
 r_masked_land_surface_temperature:
-  type: urban_climate_services.custom_datasets.geotiff_dataset.GeoTIFFDataSet
+  type: urban_climate.custom_datasets.geotiff_dataset.GeoTIFFDataSet
   filepath: data/02_intermediate/${globals:municipality}_lst_100m_${globals:dst_crs_code}.tif
 
 r_masked_canopy_fraction:
-  type: urban_climate_services.custom_datasets.geotiff_dataset.GeoTIFFDataSet
+  type: urban_climate.custom_datasets.geotiff_dataset.GeoTIFFDataSet
   filepath: data/02_intermediate/${globals:municipality}_cf_100m_${globals:dst_crs_code}.tif
 
 # raster stack
 raster_stack:
-  type: urban_climate_services.custom_datasets.geotiff_dataset.GeoTIFFDataSet
+  type: urban_climate.custom_datasets.geotiff_dataset.GeoTIFFDataSet
   filepath: data/02_intermediate/${globals:municipality}_raster_stack_100m_${globals:dst_crs_code}.tif
 
 # -----------------------------------------------------------
@@ -91,7 +91,7 @@ raster_stack:
 # -----------------------------------------------------------
 
 gdf_model_input:
-  type: geopandas.GeoJSONDataSet
+  type: geopandas.GeoJSONDataset
   filepath: data/05_model_input/${globals:municipality}_raster_stack_100m_${globals:dst_crs_code}.geojson
 
 # -----------------------------------------------------------
@@ -99,12 +99,12 @@ gdf_model_input:
 # -----------------------------------------------------------
 
 active_modelling_pipeline.regressor:
-  type: pickle.PickleDataSet
+  type: pickle.PickleDataset
   filepath: data/06_models/regressor_active.pickle
   versioned: true
 
 candidate_modelling_pipeline.regressor:
-  type: pickle.PickleDataSet
+  type: pickle.PickleDataset
   filepath: data/06_models/regressor_candidate.pickle
   versioned: true
 
@@ -113,7 +113,7 @@ candidate_modelling_pipeline.regressor:
 # -----------------------------------------------------------
 
 active_modelling_pipeline.gdf_counterfactual:
-  type: geopandas.GeoJSONDataSet
+  type: geopandas.GeoJSONDataset
   filepath: data/06_model_outputs/${globals:municipality}_lst_counterfactual.geojson
 
 
@@ -121,14 +121,14 @@ active_modelling_pipeline.gdf_counterfactual:
 # TEST
 # ------------------------------------------------------------
 test_data:
-  type: urban_climate_services.custom_datasets.geotiff_dataset.GeoTIFFDataSet
+  type: urban_climate.custom_datasets.geotiff_dataset.GeoTIFFDataSet
   filepath: data/00_test/${globals:municipality}_raster_stack_100m_${globals:dst_crs_code}.tif
   load_args:
     mask: True
     mask_path: ${globals:mask_path}
 
 test_save:
-  type: urban_climate_services.custom_datasets.geotiff_dataset.GeoTIFFDataSet
+  type: urban_climate.custom_datasets.geotiff_dataset.GeoTIFFDataSet
   filepath: data/00_test/${globals:municipality}_raster_stack_masked.tif
 
 # ------------------------------------------------------------

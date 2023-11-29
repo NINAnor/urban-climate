@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Environment Set Up and Installation &mdash; Kedro Geospatial Template 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="/usr/local/lib/python3.10/dist-packages/kedro/framework/html/_static/css/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="/usr/local/lib/python3.10/dist-packages/kedro/framework/html/_static/css/qb1-sphinx-rtd.css" />
+      <link rel="stylesheet" type="text/css" href="/usr/local/lib/python3.10/dist-packages/kedro/framework/html/_static/css/theme-overrides.css" />
+
+
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=2709fde1"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="_static/copybutton.js?v=f281be69"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Project Set Up" href="project_setup.html" />
+    <link rel="prev" title="Documentation for the Kedro Geospatial Template" href="index.html" />
+</head>
+
+<body class="wy-body-for-nav">
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+
+
+          <a href="index.html" class="icon icon-home">
+            Kedro Geospatial Template
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Environment Set Up and Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-project-from-template">Create project from template</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-project-from-scratch">Create project from scratch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="project_setup.html">Project Set Up</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kedro_readme.html">kedro-geospatial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="kedro_readme.html#project-documentation">Project Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kedro_readme.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kedro_readme.html#rules-and-guidelines">Rules and guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kedro_readme.html#how-to-install-dependencies">How to install dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kedro_readme.html#how-to-run-your-kedro-pipeline">How to run your Kedro pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kedro_readme.html#how-to-test-your-kedro-project">How to test your Kedro project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kedro_readme.html#project-dependencies">Project dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kedro_readme.html#how-to-work-with-kedro-and-notebooks">How to work with Kedro and notebooks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kedro_readme.html#jupyter">Jupyter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kedro_readme.html#jupyterlab">JupyterLab</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kedro_readme.html#ipython">IPython</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kedro_readme.html#how-to-convert-notebook-cells-to-nodes-in-a-kedro-project">How to convert notebook cells to nodes in a Kedro project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kedro_readme.html#how-to-ignore-notebook-output-cells-in-git">How to ignore notebook output cells in <code class="docutils literal notranslate"><span class="pre">git</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="kedro_readme.html#package-your-kedro-project">Package your Kedro project</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Kedro Geospatial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="kedro_geospatial.html">kedro_geospatial [package]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kedro_geospatial.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="kedro_geospatial.pipelines.html">kedro_geospatial.pipelines [package]</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="kedro_geospatial.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kedro_geospatial.html#kedro-geospatial-pipeline-registry-module">kedro_geospatial.pipeline_registry [module]</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kedro_geospatial.html#kedro-geospatial-settings-module">kedro_geospatial.settings [module]</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Kedro Geospatial Template</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Environment Set Up and Installation</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+
+  <section id="environment-set-up-and-installation">
+<h1>Environment Set Up and Installation<a class="headerlink" href="#environment-set-up-and-installation" title="Link to this heading"></a></h1>
+<p><strong>Dependencies:</strong></p>
+<ul class="simple">
+<li><p>Ubuntu</p></li>
+<li><p>Docker</p></li>
+<li><p>VS Code</p></li>
+<li><p>VS Code Extension: Dev Containers</p></li>
+<li><p>VS Code Extension: Docker</p></li>
+<li><p>VS Code Extension: Live Server</p></li>
+</ul>
+<section id="create-project-from-template">
+<h2>Create project from template<a class="headerlink" href="#create-project-from-template" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Click on the green button “Use this template” on GitHub.</p></li>
+<li><p>Open VS Code and clone the repository.</p></li>
+<li><p>Set up your docker configuration files:</p>
+<ul class="simple">
+<li><p>check your <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code></p></li>
+<li><p>check your <code class="docutils literal notranslate"><span class="pre">.devcontainer.json</span></code></p>
+<ul>
+<li><p>mount your local/network folders</p></li>
+<li><p>define vscode extensions</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Build a new docker image using the Dockerfile:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># build docker image</span>
+docker<span class="w"> </span>build<span class="w"> </span>.
+docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>&lt;image-name&gt;:&lt;image-tag&gt;<span class="w"> </span>.
+
+<span class="c1"># list docker images</span>
+docker<span class="w"> </span>images
+
+<span class="c1"># enter docker image</span>
+docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>&lt;image-id&gt;
+
+<span class="c1"># remove docker image</span>
+docker<span class="w"> </span>rmi<span class="w"> </span>&lt;image-id&gt;
+</pre></div>
+</div>
+</li>
+<li><p>Start your docker container using VS Code</p>
+<ul class="simple">
+<li><p>open the project folder in VS Code</p></li>
+<li><p>open the command palette (Ctrl+Shift+P)</p></li>
+<li><p>select “Dev Containers: Reopen in Container”
+–&gt; this uses the .devcontainer.json file to start the container</p></li>
+</ul>
+</li>
+<li><p>Install your local package</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>src
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+</li>
+<li><p>Install pre-commit and linters outside your container using pipx</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pipx<span class="w"> </span>install<span class="w"> </span>pre-commit
+pipx<span class="w"> </span>install<span class="w"> </span>black
+pipx<span class="w"> </span>install<span class="w"> </span>black
+pipx<span class="w"> </span>install<span class="w"> </span>ruff
+pipx<span class="w"> </span>install<span class="w"> </span>pyment
+</pre></div>
+</div>
+<p>** pre-commit** checks certain actions before committing changes to your repository. The list of actions that are executed are defined in <code class="docutils literal notranslate"><span class="pre">.pre-commit-config.yaml</span></code>.</p>
+<ul class="simple">
+<li><p>Install <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code>: <code class="docutils literal notranslate"><span class="pre">pipx</span> <span class="pre">install</span> <span class="pre">pre-commit</span></code></p></li>
+<li><p>Enter into your git repository and install the hooks: <code class="docutils literal notranslate"><span class="pre">pre-commit</span> <span class="pre">install</span></code> (optional, but recommended)</p></li>
+<li><p>de-activate pre-commit:</p>
+<ul>
+<li><p>delete or comment out the lines in .pre-commit-config.yaml</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pre-commit</span> <span class="pre">uninstall</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pre-commit</span> <span class="pre">clean</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>Your Environment is now set up and ready to go! Next set up your <a class="reference internal" href="project_setup.html"><span class="std std-doc">project</span></a>.</strong></p>
+</section>
+<section id="create-project-from-scratch">
+<h2>Create project from scratch<a class="headerlink" href="#create-project-from-scratch" title="Link to this heading"></a></h2>
+<p>Setup Kedro Project using venv. Follow the instructions from <a class="reference external" href="https://docs.kedro.org/en/stable/get_started/install.html">Kedro’s official documentation.</a></p>
+<ol class="arabic">
+<li><p>Create Kedro project directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>kedro-geospatial<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>kedro-geospatial
+</pre></div>
+</div>
+</li>
+<li><p>Create and activate a new virtual environment</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+<span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+</pre></div>
+</div>
+</li>
+<li><p>Install Kedro inside the venv</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>kedro
+<span class="c1"># check installation</span>
+kedro<span class="w"> </span>info
+</pre></div>
+</div>
+</li>
+<li><p>Create a new Kedro project</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kedro<span class="w"> </span>new
+</pre></div>
+</div>
+</li>
+<li><p>Install the project dependencies</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>%project_name%
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>src/requirements.txt
+</pre></div>
+</div>
+</li>
+<li><p>Install Docker pluging for Kedro</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kedro<span class="w"> </span>plugin<span class="w"> </span>install<span class="w"> </span>kedro-docker
+</pre></div>
+</div>
+</li>
+<li><p>Create a Dockerfile</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kedro<span class="w"> </span>docker<span class="w"> </span>init
+</pre></div>
+</div>
+</li>
+<li><p>Edit the Dockerfile to meet your project needs</p>
+<ul class="simple">
+<li><p>replace base image from <code class="docutils literal notranslate"><span class="pre">python:3.8-slim-buster</span></code> to <code class="docutils literal notranslate"><span class="pre">osgeo/gdal:ubuntu-small-latest</span></code></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ARG<span class="w"> </span><span class="nv">BASE_IMAGE</span><span class="o">=</span>osgeo/gdal:ubuntu-small-latest
+FROM<span class="w"> </span><span class="nv">$BASE_IMAGE</span><span class="w"> </span>as<span class="w"> </span>runtime-environment
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>remove user creation from Dockerfile</p></li>
+<li><p>update workdir to vscode workspace</p></li>
+<li><p>ensure that data is not copied to the docker image</p></li>
+</ul>
+</li>
+<li><p>Build docker image</p>
+<p>–&gt; creates .devcontainer.json file</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kedro<span class="w"> </span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>name:tag
+</pre></div>
+</div>
+</li>
+<li><p>Update your .devcontainer.json file to you personal config settings</p>
+<ul class="simple">
+<li><p>mount your local config and data folder</p></li>
+<li><p>define vscode extensions</p></li>
+</ul>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">template.devcontainer.json</span></code></p>
+</li>
+<li><p>Start your docker container using VS Code</p>
+<ul class="simple">
+<li><p>open the project folder in VS Code</p></li>
+<li><p>open the command palette (Ctrl+Shift+P)</p></li>
+<li><p>select “Dev Containers: Reopen in Container”
+–&gt; this uses the .devcontainer.json file to start the container</p></li>
+</ul>
+</li>
+<li><p>Install your dependencies</p>
+<ul class="simple">
+<li><p>install using pip (no venv is necessary as docker is isolated)</p></li>
+<li><p>update requirements.txt <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">freeze</span> <span class="pre">&gt;</span> <span class="pre">src/requirements.txt</span></code></p></li>
+</ul>
+</li>
+<li><p>Close the container</p>
+<ul class="simple">
+<li><p>open the command palette (Ctrl+Shift+P)</p></li>
+<li><p>select “Dev Container: Reopen Folder locally”</p></li>
+</ul>
+</li>
+<li><p>Set up sphinx documentation</p>
+<ul class="simple">
+<li><p>see <a class="reference external" href="https://docs.kedro.org/en/stable/tutorial/package_a_project.html">kedro docs</a></p></li>
+<li><p>open container</p></li>
+<li><p>backup your docs folder created by kedro</p></li>
+<li><p>delete <code class="docutils literal notranslate"><span class="pre">/docs/source/conf.py</span></code> and <code class="docutils literal notranslate"><span class="pre">/docs/source/index.rst</span></code></p></li>
+<li><p>init sphinx (separate source/build folders)</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sphinx-quickstart<span class="w"> </span>docs
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>replace <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> and <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> with your backuped files.</p></li>
+<li><p>init module docstring documentation</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sphinx-apidoc<span class="w"> </span>--module-first<span class="w"> </span>-o<span class="w"> </span><span class="nb">source</span><span class="w"> </span>../src/&lt;package_name&gt;
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>from docs folder run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">../src</span></code></p></li>
+</ul>
+</li>
+<li><p>Make sphinx compatible with GitHub Pages</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://python.plainenglish.io/how-to-host-your-sphinx-documentation-on-github-550254f325ae">medium blog</a></p></li>
+<li><p>update BUILDDIR to ../docs in make.bat and Makefile</p></li>
+<li><p>add <code class="docutils literal notranslate"><span class="pre">.nojekyll</span></code> file to docs folder</p></li>
+<li><p>build html: <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--docs
+<span class="w">    </span><span class="p">|</span>--doctrees
+<span class="w">    </span><span class="p">|</span>--html
+<span class="w">        </span><span class="p">|</span>--index.html
+<span class="w">        </span><span class="p">|</span>..
+<span class="w">    </span><span class="p">|</span>--source
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>conf.py
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>index.rst
+<span class="w">        </span><span class="p">|</span>..
+<span class="w">    </span><span class="p">|</span>--make.bat
+<span class="w">    </span><span class="p">|</span>--Makefile
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>open <code class="docutils literal notranslate"><span class="pre">docs/index.html</span></code> in browser</p>
+<ul>
+<li><p>right click on index.html and select “Open with Live Server”</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Init Git Repository and Publish to Github</p></li>
+<li><p>Publish Sphinx Documentation to GitHub Pages
+<strong>optional, you can also publish from main</strong></p>
+<ul class="simple">
+<li><p>create a new branch <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code></p></li>
+<li><p>add <code class="docutils literal notranslate"><span class="pre">docs/build/html</span></code> to <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code></p></li>
+<li><p>add <code class="docutils literal notranslate"><span class="pre">docs/build/html</span></code> to <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch</p></li>
+<li><p>commit and push changes to <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch</p></li>
+<li><p>go to GitHub &gt; settings &gt; Pages</p>
+<ul>
+<li><p>select <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch as source for GitHub Pages</p></li>
+<li><p>select <code class="docutils literal notranslate"><span class="pre">docs/</span></code> as folder</p></li>
+</ul>
+</li>
+<li><p>open <code class="docutils literal notranslate"><span class="pre">https://&lt;username&gt;.github.io/&lt;project_name&gt;/</span></code> in browser</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Your Environment is now set up and ready to go! Next set up your <a class="reference internal" href="project_setup.html"><span class="std std-doc">project</span></a>.</strong></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Documentation for the Kedro Geospatial Template" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="project_setup.html" class="btn btn-neutral float-right" title="Project Set Up" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+</body>
+</html>

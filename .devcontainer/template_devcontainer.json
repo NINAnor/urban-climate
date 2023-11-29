@@ -1,0 +1,23 @@
+// Fill in the template with appropriate values and
+// save it as devcontainer.json in /.devcontainer
+
+{
+	"name": "<<Container Name>>",
+	"image": "<<image_name>>:<<image_tag>>",
+	"customizations":{
+		"vscode":{
+			"extensions": [
+				"ms-python.vscode-pylance",
+				"jupyter-notebook.nbextensions",
+				"jupyter-notebook.code-snippets",
+				"jupyter-notebook.table-of-contents",
+				"vscode.git"
+			]
+		}
+	},
+	"mounts":[
+		"source=/PATH/TO/LOCAL/CONFIG,target=/workspaces/%PROJECT_NAME%/mnt/config,type=bind,consistency=cached",
+		"source=/PATH/TO/LOCAL/OR/NETWORK/DATA/,target=/workspaces/%PROJECT_NAME%/mnt/data,type=bind,consistency=cached"
+	]
+
+}

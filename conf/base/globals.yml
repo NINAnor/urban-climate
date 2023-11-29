@@ -1,0 +1,11 @@
+# Description: Global variables for the application
+#
+# Access in Catalog: $(globals:municipality)
+# Acces in your code add global variable to the parameters.yml
+
+municipality: bodo
+dst_crs: "EPSG:25833" # EPSG:25833 (bodø)
+dst_crs_code: "25833"
+
+# bounding box of study_area
+mask_path: "data/01_raw/bodo_study_area_bb.geojson"

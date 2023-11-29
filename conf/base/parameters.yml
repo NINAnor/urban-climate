@@ -1,0 +1,34 @@
+# Project parameters are defined here.
+#
+# ACCESSING PARAMETERS IN KEDRO IPYTHON
+# context.params
+#
+# ACCESSING PARAMETERS IN PIPELINE
+# from kedro.pipeline import Pipeline, node
+# https://docs.kedro.org/en/stable/configuration/parameters.html
+#
+# ACCESSING PARAMETERS IN CODE
+# from kedro.config import OmegaConfigLoader
+# from kedro.framework.project import settings
+#
+# # Instantiate a ConfigLoader with the location of your project configuration.
+# conf_path = str(project_path / settings.CONF_SOURCE)
+# conf_loader = OmegaConfigLoader(conf_source=conf_path)
+#
+# # This line shows how to access the catalog configuration.
+# catalog = conf_loader["catalog"]
+# params = conf_loader["parameters"]
+
+municipality: "${globals:municipality}"
+dst_crs: "${globals:dst_crs}"
+scaling_factor: 100
+
+# param for node stack_to_gdf
+#path_to_stack: "/home/willeke.acampo/git/ac-willeke/urban-climate/data/02_intermediate/${globals:municipality}_raster_stack_100m_25833_copy.tif"
+
+lst_acquisition_year:
+  baerum: 2018
+  bodo: 2023
+  kristiansand: 2018
+  oslo: 2018
+      

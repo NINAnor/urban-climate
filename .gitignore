@@ -6,10 +6,10 @@ conf/local/**
 !conf/local/.gitkeep
 !conf/local/template_credentials.yml
 .telemetry
+stats.json
 
 # ignore potentially sensitive credentials files
 conf/**/*credentials*
-
 
 # ignore everything in the following folders
 data/**
@@ -123,7 +123,7 @@ instance/
 .scrapy
 
 # Sphinx documentation
-docs/build/
+#docs/_build/
 
 # PyBuilder
 target/
@@ -159,6 +159,15 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# Ruff stuff
+.ruff_cache/
+
+# VScode stuff
+.vscode
+
+# folders
+tmp/**
 
 # docker
 devcontainer.json

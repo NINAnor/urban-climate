@@ -2,11 +2,11 @@
 from __future__ import annotations
 from typing import Dict
 
-from kedro.framework.project import find_pipelines
+# from kedro.framework.project import find_pipelines
 from kedro.pipeline import Pipeline
+
 # import pipelines here
 from .pipelines import raster_processing, data_science
-
 
 
 def register_pipelines() -> Dict[str, Pipeline]:
@@ -15,12 +15,12 @@ def register_pipelines() -> Dict[str, Pipeline]:
     Returns:
         A mapping from pipeline names to ``Pipeline`` objects.
     """
-    #pipelines = find_pipelines()
-    
+    # pipelines = find_pipelines()
+
     pipelines = {
         "raster_processing": raster_processing.create_pipeline(),
         "data_science": data_science.create_pipeline(),
     }
-    
+
     pipelines["__default__"] = sum(pipelines.values())
     return pipelines

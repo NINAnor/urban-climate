@@ -14,7 +14,7 @@ study_area:
 
 district_statistics:
   type: geopandas.GeoJSONDataset
-  filepath: data/01_raw/${globals:municipality}_district_statistics.geojson  
+  filepath: data/01_raw/${globals:municipality}_district_statistics.geojson
 
 # rasters
 terrain:
@@ -95,7 +95,7 @@ gdf_model_input:
   filepath: data/05_model_input/${globals:municipality}_raster_stack_100m_${globals:dst_crs_code}.geojson
 
 # -----------------------------------------------------------
-# MODELS  
+# MODELS
 # -----------------------------------------------------------
 
 active_modelling_pipeline.regressor:

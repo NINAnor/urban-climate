@@ -1,7 +1,7 @@
 kedro\_geospatial [package]
 ===========================
 
-.. automodule:: kedro_geospatial
+.. automodule:: urban_climate
    :members:
    :undoc-members:
    :show-inheritance:
@@ -12,7 +12,7 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   kedro_geospatial.pipelines
+   urban_climate.pipelines
 
 Submodules
 ----------
@@ -20,7 +20,7 @@ Submodules
 kedro\_geospatial.pipeline\_registry [module]
 ---------------------------------------------
 
-.. automodule:: kedro_geospatial.pipeline_registry
+.. automodule:: urban_climate.pipeline_registry
    :members:
    :undoc-members:
    :show-inheritance:
@@ -28,7 +28,7 @@ kedro\_geospatial.pipeline\_registry [module]
 kedro\_geospatial.settings [module]
 -----------------------------------
 
-.. automodule:: kedro_geospatial.settings
+.. automodule:: urban_climate.settings
    :members:
    :undoc-members:
    :show-inheritance:

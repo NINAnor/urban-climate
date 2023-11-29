@@ -17,7 +17,7 @@ ENV LC_ALL=nb_NO.UTF-8
 ENV LANG=nb_NO.UTF-8
 
 # set workdir to vs code workspace
-WORKDIR /workspaces/kedro-geospatial
+WORKDIR /workspaces/urban-climate
 
 #
 FROM runtime-environment

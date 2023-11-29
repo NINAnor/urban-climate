@@ -1,6 +1,6 @@
 [tool.kedro]
-package_name = "kedro_geospatial"
-project_name = "kedro-geospatial"
+package_name = "urban_climate"
+project_name = "urban-climate"
 kedro_init_version = "0.18.14"
 
 [tool.isort]
@@ -9,7 +9,7 @@ profile = "black"
 [tool.pytest.ini_options]
 addopts = """
 --cov-report term-missing \
---cov src/kedro_geospatial -ra"""
+--cov src/urban-climate -ra"""
 
 [tool.coverage.report]
 fail_under = 0

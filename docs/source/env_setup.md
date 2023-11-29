@@ -72,7 +72,7 @@ Setup Kedro Project using venv. Follow the instructions from [Kedro's official d
 
 1. Create Kedro project directory:
     ```bash
-    mkdir kedro-geospatial && cd kedro-geospatial
+    mkdir urban-climate && cd urban-climate
     ```
 2. Create and activate a new virtual environment
     ```bash

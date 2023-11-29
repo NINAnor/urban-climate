@@ -1,5 +1,5 @@
-"""kedro-geospatial file for ensuring the package is executable
-as `kedro-geospatial` and `python -m kedro_geospatial`
+"""urban-climate file for ensuring the package is executable
+as `urban-climate` and `python -m urban_climate`
 """
 import importlib
 from pathlib import Path

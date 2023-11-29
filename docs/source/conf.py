@@ -32,7 +32,7 @@ sys.path.append(project_root)
 
 from kedro.framework.cli.utils import find_stylesheets  # noqa: E402
 
-from src.kedro_geospatial import __version__ as release  # noqa: E402
+from src.urban_climate import __version__ as release  # noqa: E402
 
 # -- Project information -----------------------------------------------------
 

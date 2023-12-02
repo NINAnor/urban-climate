@@ -114,7 +114,8 @@ html_theme = "sphinx_book_theme"
 # further.  For a list of options available for each theme, see the
 # documentation.
 # book theme cannot sytle external links
-html_theme_options = {"collapse_navigation": False, "style_external_links": False}
+html_theme_options = {"collapse_navigation": False}
+# html_theme_options = {"collapse_navigation": False, "style_external_links": True}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

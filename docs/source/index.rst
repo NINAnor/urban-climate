@@ -9,6 +9,8 @@ Urban Climate Documentation
 .. toctree::
    :maxdepth: 2
 
+   notebooks/00_example
+   notebooks/01_FROST_extract_climate_data
    modules
 
 Indices and tables

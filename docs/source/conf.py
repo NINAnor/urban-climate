@@ -27,7 +27,6 @@ import sys  # noqa: E402
 # add project_root to python path
 current_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.dirname(os.path.dirname(current_dir))
-print(project_root)
 sys.path.append(project_root)
 
 from kedro.framework.cli.utils import find_stylesheets  # noqa: E402

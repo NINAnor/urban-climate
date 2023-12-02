@@ -123,7 +123,9 @@ instance/
 .scrapy
 
 # Sphinx documentation
-#docs/_build/
+# !keep build files only on gh-pages branch!
+docs/doctrees/
+docs/html/
 
 # PyBuilder
 target/

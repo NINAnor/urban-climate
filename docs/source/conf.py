@@ -101,18 +101,20 @@ pygments_style = "sphinx"
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-#
-html_theme = "sphinx_rtd_theme"
+# STANDARD SPHINX
+# html_theme = "sphinx_rtd_theme"
 
-# github pages html theme
+# GITHUB PAGES
 # html_theme = "alabaster"
 # html_static_path = ["_static"]
 
+# BOOK THEME
+html_theme = "sphinx_book_theme"
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
-#
-html_theme_options = {"collapse_navigation": False, "style_external_links": True}
+# book theme cannot sytle external links
+html_theme_options = {"collapse_navigation": False, "style_external_links": False}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

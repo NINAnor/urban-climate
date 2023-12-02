@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Kedro Geospatial &#8212; Kedro Geospatial Template 0.1 documentation</title>
+    <title>urban_climate &#8212; Urban Climate 1.0 documentation</title>
 
 
 
@@ -40,7 +40,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
   <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
-    <script src="_static/documentation_options.js?v=e1a75a79"></script>
+    <script src="_static/documentation_options.js?v=a681ed88"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -50,8 +50,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'modules';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="kedro_geospatial [package]" href="urban_climate.html" />
-    <link rel="prev" title="kedro-geospatial" href="kedro_readme.html" />
+    <link rel="next" title="urban_climate package" href="urban_climate.html" />
+    <link rel="prev" title="Urban Climate Documentation" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -134,7 +134,7 @@
 
 
 
-    <p class="title logo__title">Kedro Geospatial Template 0.1 documentation</p>
+    <p class="title logo__title">Urban Climate 1.0 documentation</p>
 
 </a></div>
         <div class="sidebar-primary-item">
@@ -151,12 +151,19 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="env_setup.html">Environment Set Up and Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="project_setup.html">Project Set Up</a></li>
-<li class="toctree-l1"><a class="reference internal" href="kedro_readme.html">kedro-geospatial</a></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Kedro Geospatial</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="urban_climate.html">kedro_geospatial [package]</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="urban_climate.pipelines.html">kedro_geospatial.pipelines [package]</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">urban_climate</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="urban_climate.html">urban_climate package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="urban_climate.custom_datasets.html">urban_climate.custom_datasets package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="urban_climate.pipelines.html">urban_climate.pipelines package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="urban_climate.pipelines.data_science.html">urban_climate.pipelines.data_science package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="urban_climate.pipelines.raster_processing.html">urban_climate.pipelines.raster_processing package</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="urban_climate.utils.html">urban_climate.utils package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="urban_climate.utils.raster.html">urban_climate.utils.raster package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="urban_climate.utils.vector.html">urban_climate.utils.vector package</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -297,7 +304,7 @@ document.write(`
 
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Kedro Geospatial</h1>
+    <h1>urban_climate</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -311,18 +318,35 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
 
-  <section id="kedro-geospatial">
-<h1>Kedro Geospatial<a class="headerlink" href="#kedro-geospatial" title="Link to this heading">#</a></h1>
+  <section id="urban-climate">
+<h1>urban_climate<a class="headerlink" href="#urban-climate" title="Link to this heading">#</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="urban_climate.html">kedro_geospatial [package]</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="urban_climate.html">urban_climate package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="urban_climate.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="urban_climate.pipelines.html">kedro_geospatial.pipelines [package]</a></li>
+<li class="toctree-l3"><a class="reference internal" href="urban_climate.custom_datasets.html">urban_climate.custom_datasets package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="urban_climate.custom_datasets.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="urban_climate.custom_datasets.html#module-urban_climate.custom_datasets.duckdb_dataset">urban_climate.custom_datasets.duckdb_dataset module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="urban_climate.custom_datasets.html#module-urban_climate.custom_datasets.geotiff_dataset">urban_climate.custom_datasets.geotiff_dataset module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="urban_climate.custom_datasets.html#module-urban_climate.custom_datasets.template_dataset">urban_climate.custom_datasets.template_dataset module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="urban_climate.pipelines.html">urban_climate.pipelines package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="urban_climate.pipelines.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="urban_climate.utils.html">urban_climate.utils package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="urban_climate.utils.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="urban_climate.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="urban_climate.html#kedro-geospatial-pipeline-registry-module">kedro_geospatial.pipeline_registry [module]</a></li>
-<li class="toctree-l2"><a class="reference internal" href="urban_climate.html#kedro-geospatial-settings-module">kedro_geospatial.settings [module]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="urban_climate.html#module-urban_climate.pipeline_registry">urban_climate.pipeline_registry module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="urban_climate.html#urban_climate.pipeline_registry.register_pipelines"><code class="docutils literal notranslate"><span class="pre">register_pipelines()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="urban_climate.html#module-urban_climate.settings">urban_climate.settings module</a></li>
 </ul>
 </li>
 </ul>
@@ -341,12 +365,12 @@ document.write(`
 
 <div class="prev-next-area">
     <a class="left-prev"
-       href="kedro_readme.html"
+       href="index.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">kedro-geospatial</p>
+        <p class="prev-next-title">Urban Climate Documentation</p>
       </div>
     </a>
     <a class="right-next"
@@ -354,7 +378,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">kedro_geospatial [package]</p>
+        <p class="prev-next-title">urban_climate package</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -381,6 +405,13 @@ By Willeke A'Campo
 
   <div class="footer-item">
 
+
+  <p class="copyright">
+
+      © Copyright 2023, Willeke A&#39;Campo.
+      <br/>
+
+  </p>
 
   </div>
 

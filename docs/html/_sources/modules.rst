@@ -1,5 +1,5 @@
-Kedro Geospatial
-================
+urban_climate
+=============
 
 .. toctree::
    :maxdepth: 4

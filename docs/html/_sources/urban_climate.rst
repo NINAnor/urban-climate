@@ -1,5 +1,5 @@
-kedro\_geospatial [package]
-===========================
+urban\_climate package
+======================
 
 .. automodule:: urban_climate
    :members:
@@ -12,21 +12,23 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
+   urban_climate.custom_datasets
    urban_climate.pipelines
+   urban_climate.utils
 
 Submodules
 ----------
 
-kedro\_geospatial.pipeline\_registry [module]
----------------------------------------------
+urban\_climate.pipeline\_registry module
+----------------------------------------
 
 .. automodule:: urban_climate.pipeline_registry
    :members:
    :undoc-members:
    :show-inheritance:
 
-kedro\_geospatial.settings [module]
------------------------------------
+urban\_climate.settings module
+------------------------------
 
 .. automodule:: urban_climate.settings
    :members:

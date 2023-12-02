@@ -1,0 +1,655 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Environment Set Up and Installation &#8212; Urban Climate 1.0 documentation</title>
+
+
+
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=3181d424bc0d3cce17c7b026e09d78c270cea3e2" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="/usr/local/lib/python3.10/dist-packages/kedro/framework/html/_static/css/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="/usr/local/lib/python3.10/dist-packages/kedro/framework/html/_static/css/qb1-sphinx-rtd.css" />
+    <link rel="stylesheet" type="text/css" href="/usr/local/lib/python3.10/dist-packages/kedro/framework/html/_static/css/theme-overrides.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script src="_static/documentation_options.js?v=a681ed88"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'env_setup';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+
+
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div id="pst-scroll-pixel-helper"></div>
+
+
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+
+      <div class="bd-sidebar-primary bd-sidebar">
+
+
+
+  <div class="sidebar-header-items sidebar-primary__section">
+
+
+
+
+  </div>
+
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+
+
+<a class="navbar-brand logo" href="index.html">
+
+
+
+
+
+
+    <p class="title logo__title">Urban Climate 1.0 documentation</p>
+
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="modules.html">urban_climate</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="urban_climate.html">urban_climate package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="urban_climate.custom_datasets.html">urban_climate.custom_datasets package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="urban_climate.pipelines.html">urban_climate.pipelines package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="urban_climate.pipelines.data_science.html">urban_climate.pipelines.data_science package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="urban_climate.pipelines.raster_processing.html">urban_climate.pipelines.raster_processing package</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="urban_climate.utils.html">urban_climate.utils package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="urban_climate.utils.raster.html">urban_climate.utils.raster package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="urban_climate.utils.vector.html">urban_climate.utils.vector package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+
+
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+
+      <main id="main-content" class="bd-main">
+
+
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+
+    <div class="header-article-items__start">
+
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+
+    </div>
+
+
+    <div class="header-article-items__end">
+
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+
+
+
+      <li><a href="_sources/env_setup.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+
+
+
+
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+
+    </div>
+
+</div>
+</div>
+
+
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Environment Set Up and Installation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-project-from-template">Create project from template</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-project-from-scratch">Create project from scratch</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+
+  <section id="environment-set-up-and-installation">
+<h1>Environment Set Up and Installation<a class="headerlink" href="#environment-set-up-and-installation" title="Link to this heading">#</a></h1>
+<p><strong>Dependencies:</strong></p>
+<ul class="simple">
+<li><p>Ubuntu</p></li>
+<li><p>Docker</p></li>
+<li><p>VS Code</p></li>
+<li><p>VS Code Extension: Dev Containers</p></li>
+<li><p>VS Code Extension: Docker</p></li>
+<li><p>VS Code Extension: Live Server</p></li>
+</ul>
+<section id="create-project-from-template">
+<h2>Create project from template<a class="headerlink" href="#create-project-from-template" title="Link to this heading">#</a></h2>
+<ol class="arabic">
+<li><p>Click on the green button “Use this template” on GitHub.</p></li>
+<li><p>Open VS Code and clone the repository.</p></li>
+<li><p>Set up your docker configuration files:</p>
+<ul class="simple">
+<li><p>check your <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code></p></li>
+<li><p>check your <code class="docutils literal notranslate"><span class="pre">.devcontainer.json</span></code></p>
+<ul>
+<li><p>mount your local/network folders</p></li>
+<li><p>define vscode extensions</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Build a new docker image using the Dockerfile:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># build docker image</span>
+docker<span class="w"> </span>build<span class="w"> </span>.
+docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>&lt;image-name&gt;:&lt;image-tag&gt;<span class="w"> </span>.
+
+<span class="c1"># list docker images</span>
+docker<span class="w"> </span>images
+
+<span class="c1"># enter docker image</span>
+docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>&lt;image-id&gt;
+
+<span class="c1"># remove docker image</span>
+docker<span class="w"> </span>rmi<span class="w"> </span>&lt;image-id&gt;
+</pre></div>
+</div>
+</li>
+<li><p>Start your docker container using VS Code</p>
+<ul class="simple">
+<li><p>open the project folder in VS Code</p></li>
+<li><p>open the command palette (Ctrl+Shift+P)</p></li>
+<li><p>select “Dev Containers: Reopen in Container”
+–&gt; this uses the .devcontainer.json file to start the container</p></li>
+</ul>
+</li>
+<li><p>Install your local package</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>src
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+</li>
+<li><p>Install pre-commit and linters outside your container using pipx</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pipx<span class="w"> </span>install<span class="w"> </span>pre-commit
+pipx<span class="w"> </span>install<span class="w"> </span>black
+pipx<span class="w"> </span>install<span class="w"> </span>black
+pipx<span class="w"> </span>install<span class="w"> </span>ruff
+pipx<span class="w"> </span>install<span class="w"> </span>pyment
+</pre></div>
+</div>
+<p>** pre-commit** checks certain actions before committing changes to your repository. The list of actions that are executed are defined in <code class="docutils literal notranslate"><span class="pre">.pre-commit-config.yaml</span></code>.</p>
+<ul class="simple">
+<li><p>Install <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code>: <code class="docutils literal notranslate"><span class="pre">pipx</span> <span class="pre">install</span> <span class="pre">pre-commit</span></code></p></li>
+<li><p>Enter into your git repository and install the hooks: <code class="docutils literal notranslate"><span class="pre">pre-commit</span> <span class="pre">install</span></code> (optional, but recommended)</p></li>
+<li><p>de-activate pre-commit:</p>
+<ul>
+<li><p>delete or comment out the lines in .pre-commit-config.yaml</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pre-commit</span> <span class="pre">uninstall</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pre-commit</span> <span class="pre">clean</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>Your Environment is now set up and ready to go! Next set up your <a class="reference internal" href="project_setup.html"><span class="std std-doc">project</span></a>.</strong></p>
+</section>
+<section id="create-project-from-scratch">
+<h2>Create project from scratch<a class="headerlink" href="#create-project-from-scratch" title="Link to this heading">#</a></h2>
+<p>Setup Kedro Project using venv. Follow the instructions from <a class="reference external" href="https://docs.kedro.org/en/stable/get_started/install.html">Kedro’s official documentation.</a></p>
+<ol class="arabic">
+<li><p>Create Kedro project directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>urban-climate<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>urban-climate
+</pre></div>
+</div>
+</li>
+<li><p>Create and activate a new virtual environment</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+<span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+</pre></div>
+</div>
+</li>
+<li><p>Install Kedro inside the venv</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>kedro
+<span class="c1"># check installation</span>
+kedro<span class="w"> </span>info
+</pre></div>
+</div>
+</li>
+<li><p>Create a new Kedro project</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kedro<span class="w"> </span>new
+</pre></div>
+</div>
+</li>
+<li><p>Install the project dependencies</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>%project_name%
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>src/requirements.txt
+</pre></div>
+</div>
+</li>
+<li><p>Install Docker pluging for Kedro</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kedro<span class="w"> </span>plugin<span class="w"> </span>install<span class="w"> </span>kedro-docker
+</pre></div>
+</div>
+</li>
+<li><p>Create a Dockerfile</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kedro<span class="w"> </span>docker<span class="w"> </span>init
+</pre></div>
+</div>
+</li>
+<li><p>Edit the Dockerfile to meet your project needs</p>
+<ul class="simple">
+<li><p>replace base image from <code class="docutils literal notranslate"><span class="pre">python:3.8-slim-buster</span></code> to <code class="docutils literal notranslate"><span class="pre">osgeo/gdal:ubuntu-small-latest</span></code></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ARG<span class="w"> </span><span class="nv">BASE_IMAGE</span><span class="o">=</span>osgeo/gdal:ubuntu-small-latest
+FROM<span class="w"> </span><span class="nv">$BASE_IMAGE</span><span class="w"> </span>as<span class="w"> </span>runtime-environment
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>remove user creation from Dockerfile</p></li>
+<li><p>update workdir to vscode workspace</p></li>
+<li><p>ensure that data is not copied to the docker image</p></li>
+</ul>
+</li>
+<li><p>Build docker image</p>
+<p>–&gt; creates .devcontainer.json file</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kedro<span class="w"> </span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>name:tag
+</pre></div>
+</div>
+</li>
+<li><p>Update your .devcontainer.json file to you personal config settings</p>
+<ul class="simple">
+<li><p>mount your local config and data folder</p></li>
+<li><p>define vscode extensions</p></li>
+</ul>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">template.devcontainer.json</span></code></p>
+</li>
+<li><p>Start your docker container using VS Code</p>
+<ul class="simple">
+<li><p>open the project folder in VS Code</p></li>
+<li><p>open the command palette (Ctrl+Shift+P)</p></li>
+<li><p>select “Dev Containers: Reopen in Container”
+–&gt; this uses the .devcontainer.json file to start the container</p></li>
+</ul>
+</li>
+<li><p>Install your dependencies</p>
+<ul class="simple">
+<li><p>install using pip (no venv is necessary as docker is isolated)</p></li>
+<li><p>update requirements.txt <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">freeze</span> <span class="pre">&gt;</span> <span class="pre">src/requirements.txt</span></code></p></li>
+</ul>
+</li>
+<li><p>Close the container</p>
+<ul class="simple">
+<li><p>open the command palette (Ctrl+Shift+P)</p></li>
+<li><p>select “Dev Container: Reopen Folder locally”</p></li>
+</ul>
+</li>
+<li><p>Set up sphinx documentation</p>
+<ul class="simple">
+<li><p>see <a class="reference external" href="https://docs.kedro.org/en/stable/tutorial/package_a_project.html">kedro docs</a></p></li>
+<li><p>open container</p></li>
+<li><p>backup your docs folder created by kedro</p></li>
+<li><p>delete <code class="docutils literal notranslate"><span class="pre">/docs/source/conf.py</span></code> and <code class="docutils literal notranslate"><span class="pre">/docs/source/index.rst</span></code></p></li>
+<li><p>init sphinx (separate source/build folders)</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sphinx-quickstart<span class="w"> </span>docs
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>replace <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> and <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> with your backuped files.</p></li>
+<li><p>init module docstring documentation</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sphinx-apidoc<span class="w"> </span>--module-first<span class="w"> </span>-o<span class="w"> </span><span class="nb">source</span><span class="w"> </span>../src/&lt;package_name&gt;
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>from docs folder run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">../src</span></code></p></li>
+</ul>
+</li>
+<li><p>Make sphinx compatible with GitHub Pages</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://python.plainenglish.io/how-to-host-your-sphinx-documentation-on-github-550254f325ae">medium blog</a></p></li>
+<li><p>update BUILDDIR to ../docs in make.bat and Makefile</p></li>
+<li><p>add <code class="docutils literal notranslate"><span class="pre">.nojekyll</span></code> file to docs folder</p></li>
+<li><p>build html: <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--docs
+<span class="w">    </span><span class="p">|</span>--doctrees
+<span class="w">    </span><span class="p">|</span>--html
+<span class="w">        </span><span class="p">|</span>--index.html
+<span class="w">        </span><span class="p">|</span>..
+<span class="w">    </span><span class="p">|</span>--source
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>conf.py
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>index.rst
+<span class="w">        </span><span class="p">|</span>..
+<span class="w">    </span><span class="p">|</span>--make.bat
+<span class="w">    </span><span class="p">|</span>--Makefile
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>open <code class="docutils literal notranslate"><span class="pre">docs/index.html</span></code> in browser</p>
+<ul>
+<li><p>right click on index.html and select “Open with Live Server”</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Init Git Repository and Publish to Github</p></li>
+<li><p>Publish Sphinx Documentation to GitHub Pages
+<strong>optional, you can also publish from main</strong></p>
+<ul class="simple">
+<li><p>create a new branch <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code></p></li>
+<li><p>add <code class="docutils literal notranslate"><span class="pre">docs/build/html</span></code> to <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code></p></li>
+<li><p>add <code class="docutils literal notranslate"><span class="pre">docs/build/html</span></code> to <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch</p></li>
+<li><p>commit and push changes to <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch</p></li>
+<li><p>go to GitHub &gt; settings &gt; Pages</p>
+<ul>
+<li><p>select <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch as source for GitHub Pages</p></li>
+<li><p>select <code class="docutils literal notranslate"><span class="pre">docs/</span></code> as folder</p></li>
+</ul>
+</li>
+<li><p>open <code class="docutils literal notranslate"><span class="pre">https://&lt;username&gt;.github.io/&lt;project_name&gt;/</span></code> in browser</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Your Environment is now set up and ready to go! Next set up your <a class="reference internal" href="project_setup.html"><span class="std std-doc">project</span></a>.</strong></p>
+</section>
+</section>
+
+
+                </article>
+
+
+
+
+
+
+                <footer class="prev-next-footer">
+
+<div class="prev-next-area">
+</div>
+                </footer>
+
+            </div>
+
+
+
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-project-from-template">Create project from template</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-project-from-scratch">Create project from scratch</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+
+
+          </div>
+          <footer class="bd-footer-content">
+
+<div class="bd-footer-content__inner container">
+
+  <div class="footer-item">
+
+<p class="component-author">
+By Willeke A'Campo
+</p>
+
+  </div>
+
+  <div class="footer-item">
+
+
+  <p class="copyright">
+
+      © Copyright 2023, Willeke A&#39;Campo.
+      <br/>
+
+  </p>
+
+  </div>
+
+  <div class="footer-item">
+
+  </div>
+
+  <div class="footer-item">
+
+  </div>
+
+</div>
+          </footer>
+
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

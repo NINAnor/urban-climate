@@ -1,0 +1,75 @@
+
+msgid ""
+msgstr ""
+"Project-Id-Version: Sphinx-Book-Theme\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: sv\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Toggle navigation"
+msgstr "Växla navigering"
+
+msgid "Print to PDF"
+msgstr "Skriv ut till PDF"
+
+msgid "open issue"
+msgstr "öppna problemrapport"
+
+msgid "Download this page"
+msgstr "Ladda ner den här sidan"
+
+msgid "previous page"
+msgstr "föregående sida"
+
+msgid "Theme by the"
+msgstr "Tema av"
+
+msgid "Last updated on"
+msgstr "Senast uppdaterad den"
+
+msgid "repository"
+msgstr "repositorium"
+
+msgid "By the"
+msgstr "Av den"
+
+msgid "Edit this page"
+msgstr "Redigera den här sidan"
+
+msgid "Open an issue"
+msgstr "Öppna en problemrapport"
+
+msgid "Download notebook file"
+msgstr "Ladda ner notebook-fil"
+
+msgid "Launch"
+msgstr "Öppna"
+
+msgid "Source repository"
+msgstr "Källkodsrepositorium"
+
+msgid "next page"
+msgstr "nästa sida"
+
+msgid "Sphinx Book Theme"
+msgstr "Sphinx Boktema"
+
+msgid "Download source file"
+msgstr "Ladda ner källfil"
+
+msgid "Copyright"
+msgstr "Upphovsrätt"
+
+msgid "suggest edit"
+msgstr "föreslå ändring"
+
+msgid "Contents"
+msgstr "Innehåll"
+
+msgid "Fullscreen mode"
+msgstr "Fullskärmsläge"
+
+msgid "By"
+msgstr "Av"

@@ -36,7 +36,7 @@ from src.urban_climate import __version__ as release  # noqa: E402
 
 # -- Project information -----------------------------------------------------
 
-project = "Kedro Geospatial Template"
+project = "Urban Climate Template"
 author = "Willeke A'Campo"
 
 # The short X.Y version.
@@ -114,7 +114,8 @@ html_theme = "sphinx_book_theme"
 # further.  For a list of options available for each theme, see the
 # documentation.
 # book theme cannot sytle external links
-html_theme_options = {"collapse_navigation": False, "style_external_links": False}
+html_theme_options = {"collapse_navigation": False}
+# html_theme_options = {"collapse_navigation": False, "style_external_links": False}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

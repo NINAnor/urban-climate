@@ -7,20 +7,41 @@ Local Climate Regulation
 
 This repository provides a workflow for analyzing the impact of urban trees on local climate regulation. This workflow is an adapted version of the methodolgy described in [Venter et al. (2020)](https://www.sciencedirect.com/science/article/pii/S0048969719361893).
 
+Code is provided for the following tasks:
+
+0. **Extract Raster Data**
+    - `extract_raster_data.js`
+    - extract raster data from GEE
+
+1. **Raster Processing**
+    - kedro pipeline: `raster_processing`
+    - load single GeoTIFFs into a rasterstack
+    - convert a raster stack to a GeoDataFrame, where each band becomes a colum, and each pixel value is a row.
+
+2. **Land Surface Temperature (LST) counterfactual modelling**
+    - kedro pipeline: `lst_counterfactual`
+    - calculate the LST counterfactual for each pixel in the study area
+
+3. **Ecosystem service calculation**
+    - kedro pipeline: `ecosystem_services`
+    - calculate the ecosystem services per district
+
+Complete documentation is hosted on GitHub Pages: [Urban Climate Documentation](https://ac-willeke.github.io/urban-climate/html/index.html)
 
 
-
-### Getting Started
-
-This project utilizes the [Kedro Framework](https://docs.kedro.org/en/stable/index.html) to streamline data processing and analysis. The code is structured into three main tasks: Data Processing, LST counterfactual modelling and Ecosystem service calculation.
-
-
+## Getting Started
+This project utilizes the [Kedro Framework](https://docs.kedro.org/en/stable/index.html) to streamline data processing and analysis. See the documentation for detailed step by step instricutions on how to set up the project and run the project.
 
 1. **Docker | environment set up**
 
     The project is set up to run in a Docker container. Documentation on how to build and run the Docker image for this project can be found [here](https://ac-willeke.github.io/urban-climate/html/docker.html).
 
-    Note that the containter contains no data, so please ensure to mount your data into the container.
+    ```bash
+    # Build container from Dockerfile
+    docker build t <image-name>:<image-tag> .
+    ``````
+
+    Note that the containter contains no data, so please ensure to mount your data into the container (see `template_devcontainer.json`).
 
 
 2. **Kedro | run the pipelines**
@@ -33,10 +54,12 @@ This project utilizes the [Kedro Framework](https://docs.kedro.org/en/stable/ind
     The pipelines can be run using the following commands:
     ```bash
     # Enter the container
-    docker run -it <image-name>:<image-tag>
+    docker run -v /host/directory:/container/directory:cached <image-id> kedro run --pipeline=<pipeline-name>
+
     ``````
 
     ```python
+    # Kedro commands
     kedro run --pipeline=raster_processing
     kedro run --pipeline=lst_counterfactual
     kedro run --pipeline=ecosystem_services
@@ -48,58 +71,27 @@ This project utilizes the [Kedro Framework](https://docs.kedro.org/en/stable/ind
     kedro run
     ```
 
-    The pipeline dependencies are visualized in the following graph:
+3. **Visualize the workflow**
 
-    ![Pipeline Dependencies](/docs/source/img/pipeline_dependencies.png)
+    The workflow can be visualized using the Kedro Viz tool. This tool can be accessed by running `kedro viz` in the terminal.
 
+    ![Kedro Viz](/docs/source/img/kedro_viz.png)
 
+----------------
 
+### **References**
+- Venter, Z.S., et al. (2020) Linking green infrastructure to urban heat and human health risk mitigation in Oslo, Norway. Science of The Total Environment, 709, 136193. https://doi.org/10.1016/j.scitotenv.2019.136193
 
+### **Contributors**
 
+- Willeke A'Campo (NINA), willeke.acampo@nina.no
 
+- Zander Venter (NINA), zander.venter@nina.no
 
-Code is provided for the following tasks:
+### **Acknowledgments**
 
-1. **Raster Preparation**
-    - load signle GeoTIFFs into a rasterstack
-    - convert a raster stack to a GeoDataFrame, where each band becomes a colum, and each pixel value is a row.
+*This repository is part of the project:*
 
-    ```python
-    kedro run --pipeline=raster_processing
-    kedro viz --pipeline=raster_processing
-    ```
+**TREKRONER Prosjektet** | Trærs betydning for klimatilpasning, karbonbinding, økosystemtjenester og biologisk mangfold.
 
-2. **Data Analysis**
-    - Land Surface Temperature counterfactual modelling
-    - Ecosystem service calculation
-
-
-
-
-## Documentation
-Documentation is hosted on GitHub Pages: [Urban Climate Documentation](https://ac-willeke.github.io/urban-climate/html/index.html)
-
-
-This template is a starting point for creating a
-[Kedro](https://docs.kedro.org/en/stable/index.html) project for
-**Geospatial Data Sciences**. It is based on the standard Kedro template which
-can be created using the command ``kedro new``.
-
-
-The template contains the following features:
-
-- **Kedro** project configuration.
-- **Dockerfile** to run your project in a container.
-    - Base image is set to [osgeo/gdal:ubuntu-small-latest](https://github.com/OSGeo/gdal/pkgs/container/gdal).
-    - Dependencies defined in [requirements.txt](/src/requirements.txt) and [pyproject.toml](src/pyproject.toml)installed in the container using pip.
-    - [template_devcontainer.json](/.devcontainer/template_devcontainer.json) to set up the configuration of the development container in VS Code, including volume mounting and vscode extensions.
-- **Geospatial Dependencies** such as gdal, geopandas, eartengine-api, geemap, leafmap and duckdb are included in the [requirements.txt](/src/requirements.txt>).
-- **Sphinx documentation** template to document your project.
-- **Pre-commit configuration** to run pre-commit hooks for black, isort, and ruff defined in [pre-commit-config.yaml](pre-commit-config.yaml) and [pyproject.toml](/pyproject.toml).
-- **Make file** to run linting and cleaning commands
-
-## Contributors
-
-Willeke A'Campo (NINA), willeke.acampo@nina.no
-
-Zander Venter (NINA), zander.venter@nina.no
+----------------

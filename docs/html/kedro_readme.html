@@ -1,136 +1,354 @@
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
-<head>
-  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>kedro-geospatial &mdash; Kedro Geospatial Template 0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="/usr/local/lib/python3.10/dist-packages/kedro/framework/html/_static/css/copybutton.css" />
-      <link rel="stylesheet" type="text/css" href="/usr/local/lib/python3.10/dist-packages/kedro/framework/html/_static/css/qb1-sphinx-rtd.css" />
-      <link rel="stylesheet" type="text/css" href="/usr/local/lib/python3.10/dist-packages/kedro/framework/html/_static/css/theme-overrides.css" />
 
 
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+<html lang="en" data-content_root="./" >
 
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=2709fde1"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script src="_static/clipboard.min.js?v=a7894cd8"></script>
-        <script src="_static/copybutton.js?v=f281be69"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="_static/js/theme.js"></script>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>kedro-geospatial &#8212; Kedro Geospatial Template 0.1 documentation</title>
+
+
+
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=3181d424bc0d3cce17c7b026e09d78c270cea3e2" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="/usr/local/lib/python3.10/dist-packages/kedro/framework/html/_static/css/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="/usr/local/lib/python3.10/dist-packages/kedro/framework/html/_static/css/qb1-sphinx-rtd.css" />
+    <link rel="stylesheet" type="text/css" href="/usr/local/lib/python3.10/dist-packages/kedro/framework/html/_static/css/theme-overrides.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script src="_static/documentation_options.js?v=e1a75a79"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'kedro_readme';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Kedro Geospatial" href="modules.html" />
     <link rel="prev" title="Project Set Up" href="project_setup.html" />
-</head>
-
-<body class="wy-body-for-nav">
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
 
 
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-          <a href="index.html" class="icon icon-home">
-            Kedro Geospatial Template
-          </a>
-              <div class="version">
-                0.1
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="env_setup.html">Environment Set Up and Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="env_setup.html#create-project-from-template">Create project from template</a></li>
-<li class="toctree-l2"><a class="reference internal" href="env_setup.html#create-project-from-scratch">Create project from scratch</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="project_setup.html">Project Set Up</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">kedro-geospatial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#project-documentation">Project Documentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#rules-and-guidelines">Rules and guidelines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#how-to-install-dependencies">How to install dependencies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#how-to-run-your-kedro-pipeline">How to run your Kedro pipeline</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#how-to-test-your-kedro-project">How to test your Kedro project</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#project-dependencies">Project dependencies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#how-to-work-with-kedro-and-notebooks">How to work with Kedro and notebooks</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#jupyter">Jupyter</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#jupyterlab">JupyterLab</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#ipython">IPython</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#how-to-convert-notebook-cells-to-nodes-in-a-kedro-project">How to convert notebook cells to nodes in a Kedro project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#how-to-ignore-notebook-output-cells-in-git">How to ignore notebook output cells in <code class="docutils literal notranslate"><span class="pre">git</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#package-your-kedro-project">Package your Kedro project</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">Kedro Geospatial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="kedro_geospatial.html">kedro_geospatial [package]</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="kedro_geospatial.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="kedro_geospatial.pipelines.html">kedro_geospatial.pipelines [package]</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="kedro_geospatial.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="kedro_geospatial.html#kedro-geospatial-pipeline-registry-module">kedro_geospatial.pipeline_registry [module]</a></li>
-<li class="toctree-l3"><a class="reference internal" href="kedro_geospatial.html#kedro-geospatial-settings-module">kedro_geospatial.settings [module]</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
 
-        </div>
-      </div>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div id="pst-scroll-pixel-helper"></div>
+
+
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">Kedro Geospatial Template</a>
-      </nav>
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
 
-      <div class="wy-nav-content">
-        <div class="rst-content style-external-links">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">kedro-geospatial</li>
-      <li class="wy-breadcrumbs-aside">
-      </li>
+      <div class="bd-sidebar-primary bd-sidebar">
+
+
+
+  <div class="sidebar-header-items sidebar-primary__section">
+
+
+
+
+  </div>
+
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+
+
+<a class="navbar-brand logo" href="index.html">
+
+
+
+
+
+
+    <p class="title logo__title">Kedro Geospatial Template 0.1 documentation</p>
+
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="env_setup.html">Environment Set Up and Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_setup.html">Project Set Up</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">kedro-geospatial</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="modules.html">Kedro Geospatial</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="urban_climate.html">kedro_geospatial [package]</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="urban_climate.pipelines.html">kedro_geospatial.pipelines [package]</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+
+
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+
+      <main id="main-content" class="bd-main">
+
+
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+
+    <div class="header-article-items__start">
+
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+
+    </div>
+
+
+    <div class="header-article-items__end">
+
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+
+
+
+      <li><a href="_sources/kedro_readme.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+
+
+
+
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+
   </ul>
-  <hr/>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+
+    </div>
+
+</div>
+</div>
+
+
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>kedro-geospatial</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-documentation">Project Documentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rules-and-guidelines">Rules and guidelines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-install-dependencies">How to install dependencies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-run-your-kedro-pipeline">How to run your Kedro pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-test-your-kedro-project">How to test your Kedro project</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-dependencies">Project dependencies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-work-with-kedro-and-notebooks">How to work with Kedro and notebooks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter">Jupyter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterlab">JupyterLab</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ipython">IPython</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-convert-notebook-cells-to-nodes-in-a-kedro-project">How to convert notebook cells to nodes in a Kedro project</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-ignore-notebook-output-cells-in-git">How to ignore notebook output cells in <code class="docutils literal notranslate"><span class="pre">git</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-your-kedro-project">Package your Kedro project</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
 
   <section id="kedro-geospatial">
-<h1>kedro-geospatial<a class="headerlink" href="#kedro-geospatial" title="Link to this heading"></a></h1>
+<h1>kedro-geospatial<a class="headerlink" href="#kedro-geospatial" title="Link to this heading">#</a></h1>
 <section id="project-documentation">
-<h2>Project Documentation<a class="headerlink" href="#project-documentation" title="Link to this heading"></a></h2>
+<h2>Project Documentation<a class="headerlink" href="#project-documentation" title="Link to this heading">#</a></h2>
 <p>This is the standard generated Kedro Readme. For the project documentation, see <a class="reference internal" href="#docs/index.html"><span class="xref myst">docs/index.html</span></a>.</p>
 </section>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>This is your new Kedro project, which was generated using <code class="docutils literal notranslate"><span class="pre">kedro</span> <span class="pre">0.18.14</span></code>.</p>
 <p>Take a look at the <a class="reference external" href="https://docs.kedro.org">Kedro documentation</a> to get started.</p>
 </section>
 <section id="rules-and-guidelines">
-<h2>Rules and guidelines<a class="headerlink" href="#rules-and-guidelines" title="Link to this heading"></a></h2>
+<h2>Rules and guidelines<a class="headerlink" href="#rules-and-guidelines" title="Link to this heading">#</a></h2>
 <p>In order to get the best out of the template:</p>
 <ul class="simple">
 <li><p>Don’t remove any lines from the <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file we provide</p></li>
@@ -140,7 +358,7 @@
 </ul>
 </section>
 <section id="how-to-install-dependencies">
-<h2>How to install dependencies<a class="headerlink" href="#how-to-install-dependencies" title="Link to this heading"></a></h2>
+<h2>How to install dependencies<a class="headerlink" href="#how-to-install-dependencies" title="Link to this heading">#</a></h2>
 <p>Declare any dependencies in <code class="docutils literal notranslate"><span class="pre">src/requirements.txt</span></code> for <code class="docutils literal notranslate"><span class="pre">pip</span></code> installation and <code class="docutils literal notranslate"><span class="pre">src/environment.yml</span></code> for <code class="docutils literal notranslate"><span class="pre">conda</span></code> installation.</p>
 <p>To install them, run:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">src</span><span class="o">/</span><span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
@@ -148,14 +366,14 @@
 </div>
 </section>
 <section id="how-to-run-your-kedro-pipeline">
-<h2>How to run your Kedro pipeline<a class="headerlink" href="#how-to-run-your-kedro-pipeline" title="Link to this heading"></a></h2>
+<h2>How to run your Kedro pipeline<a class="headerlink" href="#how-to-run-your-kedro-pipeline" title="Link to this heading">#</a></h2>
 <p>You can run your Kedro project with:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kedro</span> <span class="n">run</span>
 </pre></div>
 </div>
 </section>
 <section id="how-to-test-your-kedro-project">
-<h2>How to test your Kedro project<a class="headerlink" href="#how-to-test-your-kedro-project" title="Link to this heading"></a></h2>
+<h2>How to test your Kedro project<a class="headerlink" href="#how-to-test-your-kedro-project" title="Link to this heading">#</a></h2>
 <p>Have a look at the file <code class="docutils literal notranslate"><span class="pre">src/tests/test_run.py</span></code> for instructions on how to write your tests. You can run your tests as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kedro</span> <span class="n">test</span>
 </pre></div>
@@ -163,7 +381,7 @@
 <p>To configure the coverage threshold, go to the <code class="docutils literal notranslate"><span class="pre">.coveragerc</span></code> file.</p>
 </section>
 <section id="project-dependencies">
-<h2>Project dependencies<a class="headerlink" href="#project-dependencies" title="Link to this heading"></a></h2>
+<h2>Project dependencies<a class="headerlink" href="#project-dependencies" title="Link to this heading">#</a></h2>
 <p>To generate or update the dependency requirements for your project:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kedro</span> <span class="n">build</span><span class="o">-</span><span class="n">reqs</span>
 </pre></div>
@@ -173,13 +391,13 @@
 <p><a class="reference external" href="https://docs.kedro.org/en/stable/kedro_project_setup/dependencies.html#project-specific-dependencies">Further information about project dependencies</a></p>
 </section>
 <section id="how-to-work-with-kedro-and-notebooks">
-<h2>How to work with Kedro and notebooks<a class="headerlink" href="#how-to-work-with-kedro-and-notebooks" title="Link to this heading"></a></h2>
+<h2>How to work with Kedro and notebooks<a class="headerlink" href="#how-to-work-with-kedro-and-notebooks" title="Link to this heading">#</a></h2>
 <blockquote>
 <div><p>Note: Using <code class="docutils literal notranslate"><span class="pre">kedro</span> <span class="pre">jupyter</span></code> or <code class="docutils literal notranslate"><span class="pre">kedro</span> <span class="pre">ipython</span></code> to run your notebook provides these variables in scope: <code class="docutils literal notranslate"><span class="pre">context</span></code>, <code class="docutils literal notranslate"><span class="pre">catalog</span></code>, and <code class="docutils literal notranslate"><span class="pre">startup_error</span></code>.</p>
 <p>Jupyter, JupyterLab, and IPython are already included in the project requirements by default, so once you have run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">src/requirements.txt</span></code> you will not need to take any extra steps before you use them.</p>
 </div></blockquote>
 <section id="jupyter">
-<h3>Jupyter<a class="headerlink" href="#jupyter" title="Link to this heading"></a></h3>
+<h3>Jupyter<a class="headerlink" href="#jupyter" title="Link to this heading">#</a></h3>
 <p>To use Jupyter notebooks in your Kedro project, you need to install Jupyter:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">jupyter</span>
 </pre></div>
@@ -190,7 +408,7 @@
 </div>
 </section>
 <section id="jupyterlab">
-<h3>JupyterLab<a class="headerlink" href="#jupyterlab" title="Link to this heading"></a></h3>
+<h3>JupyterLab<a class="headerlink" href="#jupyterlab" title="Link to this heading">#</a></h3>
 <p>To use JupyterLab, you need to install it:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">jupyterlab</span>
 </pre></div>
@@ -201,14 +419,14 @@
 </div>
 </section>
 <section id="ipython">
-<h3>IPython<a class="headerlink" href="#ipython" title="Link to this heading"></a></h3>
+<h3>IPython<a class="headerlink" href="#ipython" title="Link to this heading">#</a></h3>
 <p>And if you want to run an IPython session:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kedro</span> <span class="n">ipython</span>
 </pre></div>
 </div>
 </section>
 <section id="how-to-convert-notebook-cells-to-nodes-in-a-kedro-project">
-<h3>How to convert notebook cells to nodes in a Kedro project<a class="headerlink" href="#how-to-convert-notebook-cells-to-nodes-in-a-kedro-project" title="Link to this heading"></a></h3>
+<h3>How to convert notebook cells to nodes in a Kedro project<a class="headerlink" href="#how-to-convert-notebook-cells-to-nodes-in-a-kedro-project" title="Link to this heading">#</a></h3>
 <p>You can move notebook code over into a Kedro project structure using a mixture of <a class="reference external" href="https://jupyter-notebook.readthedocs.io/en/stable/changelog.html#release-5-0-0">cell tagging</a> and Kedro CLI commands.</p>
 <p>By adding the <code class="docutils literal notranslate"><span class="pre">node</span></code> tag to a cell and running the command below, the cell’s source code will be copied over to a Python file within <code class="docutils literal notranslate"><span class="pre">src/&lt;package_name&gt;/nodes/</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kedro</span> <span class="n">jupyter</span> <span class="n">convert</span> <span class="o">&lt;</span><span class="n">filepath_to_my_notebook</span><span class="o">&gt;</span>
@@ -223,7 +441,7 @@
 </div>
 </section>
 <section id="how-to-ignore-notebook-output-cells-in-git">
-<h3>How to ignore notebook output cells in <code class="docutils literal notranslate"><span class="pre">git</span></code><a class="headerlink" href="#how-to-ignore-notebook-output-cells-in-git" title="Link to this heading"></a></h3>
+<h3>How to ignore notebook output cells in <code class="docutils literal notranslate"><span class="pre">git</span></code><a class="headerlink" href="#how-to-ignore-notebook-output-cells-in-git" title="Link to this heading">#</a></h3>
 <p>To automatically strip out all output cell contents before committing to <code class="docutils literal notranslate"><span class="pre">git</span></code>, you can run <code class="docutils literal notranslate"><span class="pre">kedro</span> <span class="pre">activate-nbstripout</span></code>. This will add a hook in <code class="docutils literal notranslate"><span class="pre">.git/config</span></code> which will run <code class="docutils literal notranslate"><span class="pre">nbstripout</span></code> before anything is committed to <code class="docutils literal notranslate"><span class="pre">git</span></code>.</p>
 <blockquote>
 <div><p><em>Note:</em> Your output cells will be retained locally.</p>
@@ -231,40 +449,116 @@
 </section>
 </section>
 <section id="package-your-kedro-project">
-<h2>Package your Kedro project<a class="headerlink" href="#package-your-kedro-project" title="Link to this heading"></a></h2>
+<h2>Package your Kedro project<a class="headerlink" href="#package-your-kedro-project" title="Link to this heading">#</a></h2>
 <p><a class="reference external" href="https://docs.kedro.org/en/stable/tutorial/package_a_project.html">Further information about building project documentation and packaging your project</a></p>
 </section>
 </section>
 
 
-           </div>
-          </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="project_setup.html" class="btn btn-neutral float-left" title="Project Set Up" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="modules.html" class="btn btn-neutral float-right" title="Kedro Geospatial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>&#169; Copyright .</p>
-  </div>
-
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+                </article>
 
 
-</footer>
-        </div>
+
+
+
+
+                <footer class="prev-next-footer">
+
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="project_setup.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Project Set Up</p>
       </div>
-    </section>
-  </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script>
+    </a>
+    <a class="right-next"
+       href="modules.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Kedro Geospatial</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
 
-</body>
+            </div>
+
+
+
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-documentation">Project Documentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rules-and-guidelines">Rules and guidelines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-install-dependencies">How to install dependencies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-run-your-kedro-pipeline">How to run your Kedro pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-test-your-kedro-project">How to test your Kedro project</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-dependencies">Project dependencies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-work-with-kedro-and-notebooks">How to work with Kedro and notebooks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter">Jupyter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyterlab">JupyterLab</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ipython">IPython</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-convert-notebook-cells-to-nodes-in-a-kedro-project">How to convert notebook cells to nodes in a Kedro project</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-ignore-notebook-output-cells-in-git">How to ignore notebook output cells in <code class="docutils literal notranslate"><span class="pre">git</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-your-kedro-project">Package your Kedro project</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+
+
+          </div>
+          <footer class="bd-footer-content">
+
+<div class="bd-footer-content__inner container">
+
+  <div class="footer-item">
+
+<p class="component-author">
+By Willeke A'Campo
+</p>
+
+  </div>
+
+  <div class="footer-item">
+
+
+  </div>
+
+  <div class="footer-item">
+
+  </div>
+
+  <div class="footer-item">
+
+  </div>
+
+</div>
+          </footer>
+
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
 </html>

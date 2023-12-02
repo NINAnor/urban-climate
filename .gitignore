@@ -124,8 +124,8 @@ instance/
 
 # Sphinx documentation
 # !keep build files only on gh-pages branch!
-docs/doctrees/
-docs/html/
+docs/doctrees/**
+docs/html/**
 
 # PyBuilder
 target/

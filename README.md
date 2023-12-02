@@ -38,7 +38,7 @@ This project utilizes the [Kedro Framework](https://docs.kedro.org/en/stable/ind
 
     ```bash
     # Build container from Dockerfile
-    docker build t <image-name>:<image-tag> .
+    docker build -t <image-name>:<image-tag> .
     ``````
 
     Note that the containter contains no data, so please ensure to mount your data into the container (see `template_devcontainer.json`).

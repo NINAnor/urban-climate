@@ -1,12 +1,13 @@
 """Project pipelines."""
 from __future__ import annotations
+
 from typing import Dict
 
 # from kedro.framework.project import find_pipelines
 from kedro.pipeline import Pipeline
 
 # import pipelines here
-from .pipelines import raster_processing, data_science
+from .pipelines import data_science, raster_processing
 
 
 def register_pipelines() -> Dict[str, Pipeline]:

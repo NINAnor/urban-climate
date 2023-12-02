@@ -3,10 +3,9 @@ from typing import Any, Dict
 
 import fsspec
 import numpy as np
-from PIL import Image
-
 from kedro.io import AbstractDataset
 from kedro.io.core import get_filepath_str, get_protocol_and_path
+from PIL import Image
 
 
 class ImageDataSet(AbstractDataset[np.ndarray, np.ndarray]):

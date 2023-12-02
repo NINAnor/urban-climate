@@ -3,9 +3,9 @@
 # Access in Catalog: $(globals:municipality)
 # Acces in your code add global variable to the parameters.yml
 
-municipality: bodo
-dst_crs: "EPSG:25833" # EPSG:25833 (bodø)
-dst_crs_code: "25833"
+municipality: kristiansand
+dst_crs: "EPSG:25832" # EPSG:25833 (bodø)
+dst_crs_code: "25832"
 
 # bounding box of study_area
-mask_path: "data/01_raw/bodo_study_area_bb.geojson"
+mask_path: "data/01_raw/kristiansand_study_area_bb.geojson"

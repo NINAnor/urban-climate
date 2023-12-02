@@ -1,7 +1,7 @@
 import logging
 import os
 from copy import deepcopy
-from pathlib import PurePosixPath
+from pathlib import Path, PurePosixPath
 from typing import Any, Dict, Tuple
 
 import fsspec
@@ -12,7 +12,6 @@ import rasterio
 import rasterio.mask
 from kedro.io import AbstractDataset
 from kedro.io.core import get_filepath_str, get_protocol_and_path
-from pathlib import Path
 
 logger = logging.getLogger(__name__)
 # Add project root to path

@@ -168,6 +168,7 @@ venv.bak/
 
 # folders
 tmp/**
+mnt/**
 
 # docker
 devcontainer.json

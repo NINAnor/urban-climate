@@ -1,30 +1,31 @@
-# build image from dockerfile:
-# docker build -t kedro-geospatial:1.0 .
-
-# use the latest gdal image as base image
+# Use the latest gdal image as base image
 ARG BASE_IMAGE=osgeo/gdal:ubuntu-small-latest
 FROM $BASE_IMAGE as runtime-environment
 
-# install pip
-RUN apt-get update && apt-get -y install python3-pip --fix-missing
+# Update, install pip and git, and clean up in one step
+RUN apt-get update && \
+    apt-get -y install python3-pip git --fix-missing && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
-# install project requirements in to the /tmp dir of the docker image
+# Install project requirements and remove the requirements file in one step
 COPY src/requirements.txt /tmp/requirements.txt
-RUN pip install --no-cache -r /tmp/requirements.txt && rm -f /tmp/requirements.txt
+RUN pip install --no-cache -r /tmp/requirements.txt && \
+    rm -f /tmp/requirements.txt
 
 # Set the locale
 ENV LC_ALL=nb_NO.UTF-8
 ENV LANG=nb_NO.UTF-8
 
-# set workdir to vs code workspace
+# Set workdir to vs code workspace
 WORKDIR /workspaces/urban-climate
 
 #
 FROM runtime-environment
 
-# copy the whole project except what is in .dockerignore
-# ensure that /data is not copied into the image
-# mount /data as volume (see devcontainer.json for mount config)
+# Copy the whole project except what is in .dockerignore
+# Ensure that /data is not copied into the image
+# Mount /data as volume (see devcontainer.json for mount config)
 COPY . .
 
 EXPOSE 8888

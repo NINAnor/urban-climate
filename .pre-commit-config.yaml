@@ -16,3 +16,4 @@ repos:
   hooks:
     - id: ruff
       types_or: [python, pyi, jupyter]
+      args: [--ignore=F811]

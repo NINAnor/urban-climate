@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Documentation for the Kedro Geospatial Template &#8212; Kedro Geospatial Template 0.1 documentation</title>
+    <title>Urban Climate Documentation &#8212; Urban Climate 1.0 documentation</title>
 
 
 
@@ -40,7 +40,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
   <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
-    <script src="_static/documentation_options.js?v=e1a75a79"></script>
+    <script src="_static/documentation_options.js?v=a681ed88"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -50,7 +50,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Environment Set Up and Installation" href="env_setup.html" />
+    <link rel="next" title="urban_climate" href="modules.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -133,7 +133,7 @@
 
 
 
-    <p class="title logo__title">Kedro Geospatial Template 0.1 documentation</p>
+    <p class="title logo__title">Urban Climate 1.0 documentation</p>
 
 </a></div>
         <div class="sidebar-primary-item">
@@ -150,12 +150,19 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="env_setup.html">Environment Set Up and Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="project_setup.html">Project Set Up</a></li>
-<li class="toctree-l1"><a class="reference internal" href="kedro_readme.html">kedro-geospatial</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="modules.html">Kedro Geospatial</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="urban_climate.html">kedro_geospatial [package]</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="urban_climate.pipelines.html">kedro_geospatial.pipelines [package]</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="modules.html">urban_climate</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="urban_climate.html">urban_climate package</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="urban_climate.custom_datasets.html">urban_climate.custom_datasets package</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="urban_climate.pipelines.html">urban_climate.pipelines package</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="urban_climate.pipelines.data_science.html">urban_climate.pipelines.data_science package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="urban_climate.pipelines.raster_processing.html">urban_climate.pipelines.raster_processing package</a></li>
+</ul>
+</li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="urban_climate.utils.html">urban_climate.utils package</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="urban_climate.utils.raster.html">urban_climate.utils.raster package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="urban_climate.utils.vector.html">urban_climate.utils.vector package</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -298,7 +305,7 @@ document.write(`
 
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Documentation for the Kedro Geospatial Template</h1>
+    <h1>Urban Climate Documentation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -308,8 +315,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Documentation for the Kedro Geospatial Template</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Urban Climate Documentation</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 
@@ -323,54 +329,12 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
 
-  <section id="documentation-for-the-kedro-geospatial-template">
-<h1>Documentation for the Kedro Geospatial Template<a class="headerlink" href="#documentation-for-the-kedro-geospatial-template" title="Link to this heading">#</a></h1>
-<p>This template is a starting point for creating a
-<a class="reference external" href="https://docs.kedro.org/en/stable/index.html">Kedro</a> project for
-<strong>Geospatial Data Sciences</strong>. It is based on the standard Kedro template which
-can be created using the command <code class="docutils literal notranslate"><span class="pre">kedro</span> <span class="pre">new</span></code>.</p>
-<p>The template contains the following features:</p>
-<ul class="simple">
-<li><p><strong>Kedro</strong> project configuration.</p></li>
-<li><dl class="simple">
-<dt><strong>Dockerfile</strong> to run your project in a container.</dt><dd><ul>
-<li><p>Base image is set to <a class="reference external" href="https://github.com/OSGeo/gdal/pkgs/container/gdal">osgeo/gdal:ubuntu-small-latest</a>.</p></li>
-<li><p>Dependencies defined in <a class="reference external" href="/src/requirements.txt">requirements.txt</a> and <a class="reference external" href="src/pyproject.toml">pyproject.toml</a> installed in the container using pip.</p></li>
-<li><p><a class="reference external" href="/.devcontainer/template_devcontainer.json">template_devcontainer.json</a> to set up the configuration of the development container in VS Code, including volume mounting and vscode extensions.</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><p><strong>Geospatial Dependencies</strong> such as gdal, geopandas, eartengine-api, geemap, leafmap and duckdb are included in the <a class="reference external" href="/src/requirements.txt">requirements.txt</a>.</p></li>
-<li><p><strong>Sphinx documentation</strong> template to document your project.</p></li>
-<li><p><strong>Pre-commit configuration</strong> to run pre-commit hooks for black, isort, and ruff defined in <a class="reference external" href="/pre-commit-config.yaml">pre-commit-config.yaml</a> and <a class="reference external" href="/pyproject.toml">pyproject.toml</a>.</p></li>
-<li><p><strong>Make file</strong> to run linting and cleaning commands</p></li>
-</ul>
-</section>
-<section id="table-of-contents">
-<h1>Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading">#</a></h1>
+  <section id="urban-climate-documentation">
+<h1>Urban Climate Documentation<a class="headerlink" href="#urban-climate-documentation" title="Link to this heading">#</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="env_setup.html">Environment Set Up and Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="env_setup.html#create-project-from-template">Create project from template</a></li>
-<li class="toctree-l2"><a class="reference internal" href="env_setup.html#create-project-from-scratch">Create project from scratch</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="project_setup.html">Project Set Up</a></li>
-<li class="toctree-l1"><a class="reference internal" href="kedro_readme.html">kedro-geospatial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="kedro_readme.html#project-documentation">Project Documentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="kedro_readme.html#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="kedro_readme.html#rules-and-guidelines">Rules and guidelines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="kedro_readme.html#how-to-install-dependencies">How to install dependencies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="kedro_readme.html#how-to-run-your-kedro-pipeline">How to run your Kedro pipeline</a></li>
-<li class="toctree-l2"><a class="reference internal" href="kedro_readme.html#how-to-test-your-kedro-project">How to test your Kedro project</a></li>
-<li class="toctree-l2"><a class="reference internal" href="kedro_readme.html#project-dependencies">Project dependencies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="kedro_readme.html#how-to-work-with-kedro-and-notebooks">How to work with Kedro and notebooks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="kedro_readme.html#package-your-kedro-project">Package your Kedro project</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">Kedro Geospatial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="urban_climate.html">kedro_geospatial [package]</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">urban_climate</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="urban_climate.html">urban_climate package</a></li>
 </ul>
 </li>
 </ul>
@@ -397,11 +361,11 @@ can be created using the command <code class="docutils literal notranslate"><spa
 
 <div class="prev-next-area">
     <a class="right-next"
-       href="env_setup.html"
+       href="modules.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Environment Set Up and Installation</p>
+        <p class="prev-next-title">urban_climate</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -420,8 +384,7 @@ can be created using the command <code class="docutils literal notranslate"><spa
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Documentation for the Kedro Geospatial Template</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Urban Climate Documentation</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 
@@ -445,6 +408,13 @@ By Willeke A'Campo
 
   <div class="footer-item">
 
+
+  <p class="copyright">
+
+      © Copyright 2023, Willeke A&#39;Campo.
+      <br/>
+
+  </p>
 
   </div>
 

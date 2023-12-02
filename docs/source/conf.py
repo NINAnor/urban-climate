@@ -32,15 +32,17 @@ sys.path.append(project_root)
 
 from kedro.framework.cli.utils import find_stylesheets  # noqa: E402
 
-from src.urban_climate import __version__ as release  # noqa: E402
+from src.urban_climate import __version__ as release  # noqa: E402, F811
 
 # -- Project information -----------------------------------------------------
 
-project = "Urban Climate Template"
+project = "Urban Climate"
+copyright = "2023, Willeke A'Campo"
 author = "Willeke A'Campo"
+release = "1.0"
 
 # The short X.Y version.
-version = re.match(r"^([0-9]+\.[0-9]+).*", release).group(1)
+version = re.match(r"^([0-9]+\.[0-9]+).*", release).group(1)  # noqa: E402, F811
 
 # -- General configuration ---------------------------------------------------
 
@@ -101,21 +103,21 @@ pygments_style = "sphinx"
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-# STANDARD SPHINX
-# html_theme = "sphinx_rtd_theme"
+# SPHINX THEME
+html_theme = "sphinx_rtd_theme"
 
-# GITHUB PAGES
+# GITHUB THEME
 # html_theme = "alabaster"
-# html_static_path = ["_static"]
 
 # BOOK THEME
 html_theme = "sphinx_book_theme"
+
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
-# book theme cannot sytle external links
-html_theme_options = {"collapse_navigation": False}
-# html_theme_options = {"collapse_navigation": False, "style_external_links": False}
+# html_theme_options = {"collapse_navigation": False, "style_external_links": True}
+# book theme has not style_external_linkst option
+html_theme_options = {"collapse_navigation": False, "dark_mode": True}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

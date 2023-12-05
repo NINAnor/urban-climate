@@ -11,7 +11,6 @@ from rasterio.warp import Resampling, calculate_default_transform, reproject
 def reproject_raster(
     input_raster: Tuple[np.ndarray, Dict[str, Any]], dst_crs: str
 ) -> Tuple[np.ndarray, Dict[str, Any]]:
-
     """Reprojects the raster to the destination CRS.
 
     Args:

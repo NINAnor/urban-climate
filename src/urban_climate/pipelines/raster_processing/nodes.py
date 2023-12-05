@@ -139,7 +139,6 @@ def stack_rasters(
 
 
 def stack_to_gdf(raster_stack, study_area, path_copy_stack):
-
     """Converts a raster stack to a GeoDataFrame.
     Each band becomes a column, and each pixel value is a row.
     Args:

@@ -12,7 +12,6 @@ logger = logging.getLogger(__name__)
 def resample_raster(
     input_raster: Tuple[np.ndarray, Dict[str, Any]], scaling_factor: float
 ) -> Tuple[np.ndarray, Dict[str, Any]]:
-
     array, metadata = input_raster
 
     # Resample (nearest neighbour interpolation)

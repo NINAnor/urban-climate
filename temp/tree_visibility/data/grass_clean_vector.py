@@ -129,6 +129,12 @@ if __name__ == '__main__':
     )
    
 # Grass commands
+# import
+"""
+v.import input=/home/NINA.NO/willeke.acampo/Mounts/P-Prosjekter2/152022_itree_eco_ifront_synliggjore_trars_rolle_i_okosyst/TEMP/oslo/08_reporting/oslo_study_area.geojson 
+layer=oslo_study_area output=study_area
+"""
+
 # snap vertices     
 """
 v.clean input=bldg output=snap_bldg tool=snap threshold=0.1
@@ -136,6 +142,13 @@ v.clean input=bldg output=snap_bldg tool=snap threshold=0.1
 
 # dissolve objects
 # gs.run_command('v.dissolve', input=input_map, output=output_map, column=column)
+# bygningstype
+# grontomradeklasse
+# open_space
+
+# v.db.update map=snap_open_space@oslo_split_data columns=open_space value=åpent område
+# v.db.addcolumn map=snap_open_space columns=open_space                           
+
 """
 v.dissolve input=snap_bldg output=dissolve_bldg column=bygningstype
 """

@@ -1,3 +1,9 @@
+""" 
+Split green, open, public and private space layers by district layer.
+and add the district (grunnkretsnummer and delomradenummer) number to the attribute table.
+"""
+
+
 #!/usr/bin/env python3
 
 import grass.script as gs

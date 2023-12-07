@@ -1,7 +1,7 @@
 import papermill as pm
 import os 
 
-def main(input_notebook, output_notebook, municipality, district_numbers, data_path):
+def main(input_notebook, output_notebook, municipality, district_numbers, data_path, fanout=True):
    for number in district_numbers:
 
       print(f"Running.. district number: {number}")
@@ -12,7 +12,8 @@ def main(input_notebook, output_notebook, municipality, district_numbers, data_p
          parameters=dict(
             municipality = municipality,
             district_number=number,
-            data_path = data_path
+            data_path = data_path,
+            fanout = fanout, 
             ))
       print(f"Finished running district number: {number}")
    
@@ -24,7 +25,7 @@ if __name__ == '__main__':
    municipality = "oslo"
    district_numbers = range(30101, 30161)
    data_path = r"/home/NINA.NO/willeke.acampo/Mounts/P-Prosjekter2/152022_itree_eco_ifront_synliggjore_trars_rolle_i_okosyst/TEMP"
-   
+   fanout=True
    
    # path current wd
    project_dir = os.getcwd()
@@ -33,4 +34,4 @@ if __name__ == '__main__':
    input_notebook = os.path.join(project_dir, "temp", "tree_visibility", "notebooks", "04a_oslo_treeVis_stat_per_district" + ".ipynb")
    print(input_notebook)
    output_notebook = input_notebook # overwrite cells in input notebook
-   main(input_notebook, output_notebook, municipality, district_numbers, data_path)
+   main(input_notebook, output_notebook, municipality, district_numbers, data_path, fanout)

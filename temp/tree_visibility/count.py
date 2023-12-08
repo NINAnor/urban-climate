@@ -14,7 +14,6 @@ import pandas as pd
 # convert geom from binary to shapely
 from shapely.wkb import loads
 
-
 def get_parquet_dict(district_number, interim_dir):
     file_names = [
         f"districts_{district_number}",
@@ -29,7 +28,6 @@ def get_parquet_dict(district_number, interim_dir):
     }
 
     return parquet_dict
-
 
 def load_parquet_to_duckdb(input_parquet, output_table, db_path):
     with duckdb.connect(database=db_path, read_only=False) as con:
@@ -55,28 +53,50 @@ def load_parquet_to_duckdb(input_parquet, output_table, db_path):
                 """
             )
             print(f"Loaded table: {output_table}")
-            
+
             # remove leading zeros from 'grunnkretsnummer' column
-            con.execute(f"""
+            con.execute(
+                f"""
                 UPDATE {output_table}
                 SET grunnkretsnummer = TRIM(LEADING '0' FROM grunnkretsnummer)
-            """)
-            
+            """
+            )
+
             # if col_name district_code exists, rename to grunnkretsnummer
-            columns = con.execute(f"PRAGMA table_info({output_table})").fetch_df()['name'].tolist()
-            if 'district_code' in columns:
+            columns = (
+                con.execute(f"PRAGMA table_info({output_table})")
+                .fetch_df()["name"]
+                .tolist()
+            )
+            if "district_code" in columns:
                 # remove grunnkretsnummer column
-                con.execute(f"""
+                con.execute(
+                    f"""
                     ALTER TABLE {output_table}
                     DROP COLUMN grunnkretsnummer
-                """)
+                """
+                )
                 # rename district_code to grunnkretsnummer
-                con.execute(f"""
+                con.execute(
+                    f"""
                     ALTER TABLE {output_table}
                     RENAME COLUMN district_code TO grunnkretsnummer
-                """)
+                """
+                )
         else:
             print(f"File {input_parquet} does not exist. Skipping.")
+            # creaet empty table with col "grunnkretsnumer and delomradenummer type int"
+            con.execute(
+                f"""
+                CREATE TABLE {output_table} (
+                    grunnkretsnummer INT,
+                    delomradenummer INT,
+                    geometry GEOMETRY
+                )
+            """
+            )
+    return
+
 
 def check_column_in_tables(db_path):
     with duckdb.connect(database=db_path, read_only=False) as con:
@@ -84,20 +104,35 @@ def check_column_in_tables(db_path):
         con.load_extension("spatial")
 
         # Get the list of all tables in the database
-        tables = con.execute("SELECT name FROM sqlite_master WHERE type='table'").fetch_df()['name'].tolist()
+        tables = (
+            con.execute("SELECT name FROM sqlite_master WHERE type='table'")
+            .fetch_df()["name"]
+            .tolist()
+        )
 
         for table in tables:
             # Check if 'grunnkretsnummer' column exists in the table
-            columns = con.execute(f"PRAGMA table_info({table})").fetch_df()['name'].tolist()
-            if 'grunnkretsnummer' in columns:
+            columns = (
+                con.execute(f"PRAGMA table_info({table})").fetch_df()["name"].tolist()
+            )
+            if "grunnkretsnummer" in columns:
                 # Check if 'grunnkretsnummer' column is filled with values with length 8
-                df = pd.read_sql(f"SELECT grunnkretsnummer FROM {table} WHERE LENGTH(grunnkretsnummer) = 7", con)
+                df = pd.read_sql(
+                    f"SELECT grunnkretsnummer FROM {table} WHERE LENGTH(grunnkretsnummer) = 7",
+                    con,
+                )
                 if not df.empty:
-                    print(f"Table {table} contains 'grunnkretsnummer' column with values of length 8.")
+                    print(
+                        f"Table {table} contains 'grunnkretsnummer' column with values of length 8."
+                    )
                 else:
-                    print(f"Table {table} contains 'grunnkretsnummer' column but it does not have values of length 8.")
+                    print(
+                        f"Table {table} contains 'grunnkretsnummer' column but it does not have values of length 8."
+                    )
             else:
                 print(f"Table {table} does not contain 'grunnkretsnummer' column.")
+    return
+
 
 def print_duckdb_info(db_path):
     with duckdb.connect(database=db_path, read_only=False) as con:
@@ -114,15 +149,18 @@ def print_duckdb_info(db_path):
         # Print column names of district table
         columns = con.execute("PRAGMA table_info(districts);").fetchall()
         print("Columns of districts table:", columns)
+    return
+
 
 def remove_duckdb_database(db_path):
     if os.path.exists(db_path):
         os.remove(db_path)
     else:
         print(f"The file {db_path} does not exist")
+    return
 
 
-def remove_all_except_two(db_path, table_a, table_b):
+def remove_all_except_two(db_path, table_a, table_b, table_c):
     with duckdb.connect(database=db_path, read_only=False) as con:
         # Get table names
         tables = con.execute(
@@ -132,8 +170,9 @@ def remove_all_except_two(db_path, table_a, table_b):
         # Drop each table that is not 'districts'
         for table in tables:
             table_name = table[0]
-            if table_name != table_a and table_name != table_b:
+            if table_name != table_a and table_name != table_b and table_name != table_c:
                 con.execute(f"DROP TABLE {table_name};")
+    return
 
 
 def add_columns(db_path, district_number):
@@ -151,7 +190,9 @@ def add_columns(db_path, district_number):
         ]
         existing_columns = [
             column[1]
-            for column in con.execute(f"PRAGMA table_info(districts_{district_number});").fetchall()
+            for column in con.execute(
+                f"PRAGMA table_info(districts_{district_number});"
+            ).fetchall()
         ]
 
         for column in columns:
@@ -159,11 +200,35 @@ def add_columns(db_path, district_number):
                 print(f"Column {column} already exists. Skipping.")
                 continue
 
-            con.execute(f"ALTER TABLE districts_{district_number} ADD COLUMN {column} INTEGER")
+            con.execute(
+                f"ALTER TABLE districts_{district_number} ADD COLUMN {column} INTEGER"
+            )
+
+    # add column n_green_spaces and n_trees to res_bldg table
+    with duckdb.connect(database=db_path, read_only=False) as con:
+        columns = ["n_green_spaces", "n_trees"]
+        existing_columns = [
+            column[1]
+            for column in con.execute(
+                f"PRAGMA table_info(res_bldg_{district_number});"
+            ).fetchall()
+        ]
+
+        for column in columns:
+            if column in existing_columns:
+                print(f"Column {column} already exists. Skipping.")
+                continue
+
+            con.execute(
+                f"ALTER TABLE res_bldg_{district_number} ADD COLUMN {column} INTEGER"
+            )
+
+    return
 
 
-def n_trees(db_path, district_number, col_join='grunnkretsnummer'):
-    # based on districtnumber (NOT GEOMETRY)
+def n_trees(db_path, district_number, col_join="grunnkretsnummer"):
+    # based on ATTRIBUTE VALUE
+    # count of all trees in the district
 
     with duckdb.connect(database=db_path, read_only=False) as con:
         con.execute(
@@ -176,11 +241,15 @@ def n_trees(db_path, district_number, col_join='grunnkretsnummer'):
                 )
             """
         )
-        count = con.execute(f"SELECT n_trees FROM districts_{district_number}").fetchall()
-        return count
+        count = con.execute(
+            f"SELECT n_trees FROM districts_{district_number}"
+        ).fetchall()
+    return count
 
-def n_bldg(db_path, district_number, col_join='grunnkretsnummer'):
-    # based on districtnumber (NOT GEOMETRY)
+
+def n_bldg(db_path, district_number, col_join="grunnkretsnummer"):
+    # based on ATTRIBUTE VALUE
+    # count of all buildings in the district
 
     with duckdb.connect(database=db_path, read_only=False) as con:
         con.execute(
@@ -193,16 +262,20 @@ def n_bldg(db_path, district_number, col_join='grunnkretsnummer'):
                 )
             """
         )
-        count = con.execute(f"SELECT n_bldg FROM districts_{district_number}").fetchall()
-        return count
+        count = con.execute(
+            f"SELECT n_bldg FROM districts_{district_number}"
+        ).fetchall()
+    return count
 
-def n_res_bldg(db_path, district_number, col_join='grunnkretsnummer'):
-    # based on districtnumber (NOT GEOMETRY)
+
+def n_res_bldg(db_path, district_number, col_join="grunnkretsnummer"):
+    # based on ATTRIBUTE VALUE
+    # count of all residential buildings in the district
 
     with duckdb.connect(database=db_path, read_only=False) as con:
         con.install_extension("spatial")
         con.load_extension("spatial")
-        
+
         con.execute(
             f"""
             UPDATE districts_{district_number}
@@ -213,84 +286,123 @@ def n_res_bldg(db_path, district_number, col_join='grunnkretsnummer'):
                 )
             """
         )
-        count = con.execute(f"SELECT n_res_bldg FROM districts_{district_number}").fetchall()
-        return count
+        count = con.execute(
+            f"SELECT n_res_bldg FROM districts_{district_number}"
+        ).fetchall()
+    return count
 
-def n_res_bldg_near_gs(db_path, district_number, col_join='grunnkretsnummer'):
+
+def n_green_spaces(db_path, district_number):
+    # based on GEOMETRY
+    # if there is a green spaces within 300 m distance of a res bldg, set n_green_spaces to 1
+    # if there is no green space within 300 m distance of a res bldg, set n_green_spaces to 0
     with duckdb.connect(database=db_path, read_only=False) as con:
         con.install_extension("spatial")
         con.load_extension("spatial")
 
+        con.execute(
+            f"""
+            UPDATE res_bldg_{district_number}
+            SET n_green_spaces = (
+                CASE
+                    WHEN EXISTS (
+                        SELECT 1
+                        FROM green_space
+                        WHERE green_space.geometry IS NOT NULL 
+                        AND ST_DWithin(ST_GeomFromWKB(res_bldg_{district_number}.geometry), ST_GeomFromWKB(green_space.geometry), 300)
+                    ) THEN 1
+                    ELSE 0
+                END
+            )
+            """
+        )
+        count = con.execute(
+            f"SELECT n_green_spaces FROM res_bldg_{district_number}"
+        ).fetchall()
+    return
+
+
+def n_res_bldg_near_gs(db_path, district_number, col_join="grunnkretsnummer"):
+    # based on ATTRIBUTE VALUE
+    # count all values =1 in n_green_spaces column in res_bldg table
+    # and add to districts table based on districtnumber
+
+    with duckdb.connect(database=db_path, read_only=False) as con:
         con.execute(
             f"""
             UPDATE districts_{district_number}
             SET n_res_bldg_near_gs = (
-                SELECT COUNT(res_bldg_{district_number}.{col_join})
+                SELECT COUNT(*)
                 FROM res_bldg_{district_number}
-                LEFT JOIN green_space
-                ON ST_DWithin(
-                    ST_GeomFromWKB(res_bldg_{district_number}.geometry), 
-                    ST_GeomFromWKB(green_space.geometry), 
-                    300.0
+                WHERE n_green_spaces >= 1 AND districts_{district_number}.{col_join} = res_bldg_{district_number}.{col_join}
                 )
-                WHERE districts_{district_number}.{col_join} = res_bldg_{district_number}.{col_join}
-            )
             """
         )
-        count = con.execute(f"SELECT n_res_bldg_near_gs FROM districts_{district_number}").fetchall()
-        return count
+        count = con.execute(
+            f"SELECT n_res_bldg_near_gs FROM districts_{district_number}"
+        ).fetchall()
 
-def n_res_bldg_near_trees(db_path, district_number, col_join='grunnkretsnummer'):
+    return count
+
+def n_near_trees(db_path, district_number):
+    # based on GEOMETRY
+    # count all trees within 15m distance of a res bldg
+    # if count >= 3, set n_trees to 1
+    # if count < 3, set n_trees to 0
     with duckdb.connect(database=db_path, read_only=False) as con:
         con.install_extension("spatial")
         con.load_extension("spatial")
 
         con.execute(
             f"""
-            UPDATE districts_{district_number}
-            SET n_bldg_near_trees = (
-                SELECT res_bldg_count
-                FROM (
-                    SELECT 
-                        {col_join}, 
-                        COUNT({col_join}) AS res_bldg_count
-                    FROM (
-                        SELECT 
-                            res_bldg_{district_number}.{col_join}, 
-                            COUNT(tree_crowns_{district_number}.{col_join}) AS tree_count
-                        FROM 
-                            res_bldg_{district_number}
-                        LEFT JOIN 
-                            tree_crowns_{district_number}
-                        ON 
-                            ST_DWithin(
-                                ST_GeomFromWKB(res_bldg_{district_number}.geometry), 
-                                ST_GeomFromWKB(tree_crowns_{district_number}.geometry), 
-                                15.0
-                            )
-                        GROUP BY 
-                            res_bldg_{district_number}.{col_join}
-                    ) AS subquery
-                    WHERE 
-                        tree_count > 3
-                    GROUP BY 
-                        {col_join}
-                ) AS subquery2
-                WHERE districts_{district_number}.{col_join} = subquery2.{col_join}
+            UPDATE res_bldg_{district_number}
+            SET n_trees = (
+                CASE
+                    WHEN (
+                        SELECT COUNT(*)
+                        FROM tree_crowns
+                        WHERE tree_crowns.geometry IS NOT NULL 
+                        AND ST_DWithin(ST_GeomFromWKB(res_bldg_{district_number}.geometry), ST_GeomFromWKB(tree_crowns.geometry), 15)
+                    ) >= 3 THEN 1
+                    ELSE 0
+                END
             )
             """
         )
-        
-        count = con.execute(f"SELECT n_bldg_near_trees FROM districts_{district_number}").fetchall()
-        return count
+        count = con.execute(
+            f"SELECT n_trees FROM res_bldg_{district_number}"
+        ).fetchall()
+    return count
 
-def a_crown(db_path, district_number, col_join='grunnkretsnummer'):
+
+def n_res_bldg_near_trees(db_path, district_number, col_join="grunnkretsnummer"):
+    # based on ATTRIBUTE VALUE
+    # count all values =1 in n_trees column in res_bldg table
+    # and add to districts table based on districtnumber
+
+    with duckdb.connect(database=db_path, read_only=False) as con:
+        con.execute(
+            f"""
+            UPDATE districts_{district_number}
+            SET n_bldg_near_trees = (
+                SELECT COUNT(*)
+                FROM res_bldg_{district_number}
+                WHERE n_trees >= 1 AND districts_{district_number}.{col_join} = res_bldg_{district_number}.{col_join}
+                )
+            """
+        )
+        count = con.execute(
+            f"SELECT n_bldg_near_trees FROM districts_{district_number}"
+        ).fetchall()
+    return count
+
+
+def a_crown(db_path, district_number, col_join="grunnkretsnummer"):
     # sum crown area for all trees in the district
     with duckdb.connect(database=db_path, read_only=False) as con:
-
         con.install_extension("spatial")
         con.load_extension("spatial")
-        
+
         con.execute(
             f"""
             UPDATE districts_{district_number}
@@ -301,9 +413,12 @@ def a_crown(db_path, district_number, col_join='grunnkretsnummer'):
                 )
             """
         )
-        count = con.execute(f"SELECT a_crown FROM districts_{district_number}").fetchall()
-        return count
-        
+        count = con.execute(
+            f"SELECT a_crown FROM districts_{district_number}"
+        ).fetchall()
+    return count
+
+
 def update_table(db_path, district_number):
     with duckdb.connect(database=db_path, read_only=False) as con:
         # if NAN set to 0
@@ -332,8 +447,8 @@ def update_table(db_path, district_number):
             SET perc_near_trees = (n_bldg_near_trees / n_res_bldg) * 100
             """
         )
-        
-        # PERCENTAGE of tree crown coverage per district 
+
+        # PERCENTAGE of tree crown coverage per district
         con.execute(
             f"""
             UPDATE districts_{district_number}
@@ -341,7 +456,7 @@ def update_table(db_path, district_number):
             """
         )
 
-        # if NAN set to 0 
+        # if NAN set to 0
         con.execute(
             f"""
             UPDATE districts_{district_number}
@@ -350,20 +465,22 @@ def update_table(db_path, district_number):
                 perc_crown = COALESCE(perc_crown, 0)
             """
         )
-        
+    return
+
+
 def export_districts_to_gdf(db_path, district_number):
     with duckdb.connect(database=db_path, read_only=False) as con:
-
         df = pd.read_sql(f"SELECT * FROM districts_{district_number}", con)
         # Convert geometry column from WKB to shapely geometry
-        df['geometry'] = df['geometry'].apply(loads, hex=True)
-        
+        df["geometry"] = df["geometry"].apply(loads, hex=True)
+
         # Convert DataFrame to GeoDataFrame
-        gdf = gpd.GeoDataFrame(df, geometry='geometry')
-        gdf_sorted = gdf.sort_values(by='grunnkretsnummer', ascending=True)
+        gdf = gpd.GeoDataFrame(df, geometry="geometry")
+        gdf_sorted = gdf.sort_values(by="grunnkretsnummer", ascending=True)
         gdf_sorted = gdf_sorted.round(2)
 
     return gdf
+
 
 def export_all_tables_to_csv(db_path, reporting_dir):
     with duckdb.connect(database=db_path, read_only=False) as con:
@@ -376,11 +493,155 @@ def export_all_tables_to_csv(db_path, reporting_dir):
         for table in tables:
             table_name = table[0]
             df = pd.read_sql(f"SELECT * FROM {table_name}", con)
-            df.to_csv(os.path.join(reporting_dir, f"{table_name}.csv"), index=False)
+            df.to_csv(
+                os.path.join(reporting_dir, "by_district", f"{table_name}.csv"),
+                index=False,
+            )
+    return
+
+
+def concat_all_csvs(raw_dir, reporting_dir, district_numbers):
+    dfs = []
+    for district_number in district_numbers:
+        df = pd.read_csv(
+            os.path.join(
+                reporting_dir, "by_district", f"districts_{district_number}.csv"
+            )
+        )
+
+        # drop geometry columns
+        df.drop(columns=["geometry"], inplace=True)
+        dfs.append(df)
+
+    # concatenate all DataFrames
+    df_all = pd.concat(dfs, ignore_index=True)
+    print(df_all.head())
+    df_sorted = df_all.sort_values(by="grunnkretsnummer", ascending=True)
+    df_sorted = df_sorted.round(2)
+    # if starts with 0 remove
+    df_sorted["grunnkretsnummer"] = (
+        df_sorted["grunnkretsnummer"].astype(str).str.lstrip("0")
+    )
+    df_sorted["grunnkretsnummer"] = df_sorted["grunnkretsnummer"].astype("int64")
+
+    # load districts table from .geojson to get geometry column
+    df_districts = gpd.read_file(
+        os.path.join(raw_dir, f"{municipality}_districts.geojson")
+    )
+
+    # convert "grunnkretsnummer" column to int64
+    df_districts["grunnkretsnummer"] = (
+        df_districts["grunnkretsnummer"].astype(str).str.lstrip("0")
+    )
+    df_districts["grunnkretsnummer"] = df_districts["grunnkretsnummer"].astype("int64")
+
+    # add geom column from df_districts to df_sorted
+    df_merged = pd.merge(
+        df_sorted,
+        df_districts[["grunnkretsnummer", "geometry"]],
+        on="grunnkretsnummer",
+        how="left",
+    )
+
+    # convert to GeoDataFrame
+    gdf = gpd.GeoDataFrame(df_merged, geometry="geometry")
+    gdf_sorted = gdf.sort_values(by="grunnkretsnummer", ascending=True)
+    gdf_sorted = gdf_sorted.round(2)
+
+    # Define the %-bins and labels
+    # labels = ["no data", "0-25%", "25-50%", "50-75%", "75-100%"]
+    bins = pd.IntervalIndex.from_tuples([(-0.01, 25), (25, 50), (50, 75), (75, 100)])
+    dict = {
+        "nan": "no data",
+        "(-0.01, 25.0]": "0-25%",
+        "(25.0, 50.0]": "25-50%",
+        "(50.0, 75.0]": "50-75%",
+        "(75.0, 100.0]": "75-100%",
+    }
+
+    # Near Residential Buildings % Categories
+    gdf_sorted["bldg_bins"] = pd.cut(gdf_sorted["perc_near_trees"], bins)
+    gdf_sorted["bldg_bins"] = gdf_sorted["bldg_bins"].astype(str)
+    gdf_sorted["labels_near_trees"] = gdf_sorted["bldg_bins"].map(dict)
+
+    # Near Green Space % Categories
+    gdf_sorted["gs_bins"] = pd.cut(gdf_sorted["perc_near_gs"], bins)
+    gdf_sorted["gs_bins"] = gdf_sorted["gs_bins"].astype(str)
+    gdf_sorted["labels_near_gs"] = gdf_sorted["gs_bins"].map(dict)
+
+    # Crown Coverate % Categories
+    gdf_sorted["crown_bins"] = pd.cut(gdf_sorted["perc_crown"], bins)
+    gdf_sorted["crown_bins"] = gdf_sorted["crown_bins"].astype(str)
+    gdf_sorted["labels_perc_crown"] = gdf_sorted["crown_bins"].map(dict)
+
+    gdf_sorted.drop(columns=["bldg_bins", "gs_bins", "crown_bins"], inplace=True)
+
+    # sort columns
+    new_order = [
+        "OBJECTID",
+        "fylkesnummer",
+        "fylkesnavn",
+        "kommunenummer",
+        "kommunenavn",
+        "delomradenummer",
+        "delomradenavn",
+        "grunnkretsnummer",
+        "grunnkretsnavn",
+        "kilde_admin",
+        "kilde_befolkning",
+        "id_befolkning",
+        "year_pop_stat",
+        "pop_total",
+        "pop_elderly",
+        "a_district",
+        "a_unit",
+        "a_clipped",
+        "n_trees",
+        "n_bldg",
+        "n_res_bldg",
+        "n_res_bldg_near_gs",
+        "perc_near_gs",
+        "labels_near_gs",
+        "n_bldg_near_trees",
+        "perc_near_trees",
+        "labels_near_trees",
+        "a_crown",
+        "perc_crown",
+        "labels_perc_crown",
+        "SHAPE_Length",
+        "SHAPE_Area",
+        "geometry",
+    ]
+
+    # Reorder the columns
+    gdf_sorted = gdf_sorted[new_order]
+    gdf.crs = "EPSG:25832"
+
+    # export all districts to csv, geojosn and parquet
+    # Export GDF to file
+    filepath = os.path.join(reporting_dir, f"{municipality}_treeVis_stat")
+
+    # Write to .parquet
+    gdf_sorted.to_parquet(os.path.join(filepath + ".parquet"))
+
+    # Write to .geojson with coord. ref. system epsg:25832
+    gdf_sorted.crs = "EPSG:25832"
+    gdf_sorted.to_file(
+        os.path.join(filepath + ".geojson"), driver="GeoJSON", encoding="utf-8"
+    )
+
+    # write to .shp with coord. ref. system epsg:25832
+    gdf_sorted.to_file(os.path.join(filepath + ".shp"), driver="ESRI Shapefile")
+
+    # Write to .csv
+    gdf_sorted.to_csv(os.path.join(filepath + ".csv"), encoding="utf-8")
+
+    return
+
 
 def main(district_numbers, interim_dir, db_path, reporting_dir):
-
-    # remove duckdb database if it exists
+    # remove duckdb database
+    remove_duckdb_database(db_path)
 
     # add district layer to duckdb
     district_path = os.path.join(interim_dir, f"{municipality}_districts.parquet")
@@ -389,15 +650,15 @@ def main(district_numbers, interim_dir, db_path, reporting_dir):
     # add green space layer to duckdb
     green_space_path = os.path.join(interim_dir, f"{municipality}_green_space.parquet")
     load_parquet_to_duckdb(green_space_path, "green_space", db_path)
-    
+
+    # add trees layer to duckdb
+    tree_path = os.path.join(interim_dir, f"{municipality}_tree_crowns.parquet")
+    load_parquet_to_duckdb(tree_path, "tree_crowns", db_path)
+
     # remove tables from previous run
-    remove_all_except_two(db_path, "districts", "green_space")
+    remove_all_except_two(db_path, "districts", "green_space", "tree_crowns")
 
-    # create empty gdf with crs epsg:25832
-    gdfs = []
-    
     for district_number in district_numbers:
-
         print(f"Running.. district number: {district_number}")
 
         # get parquet files
@@ -408,122 +669,64 @@ def main(district_numbers, interim_dir, db_path, reporting_dir):
             load_parquet_to_duckdb(
                 input_parquet=parquet, output_table=table, db_path=db_path
             )
-            
+
         # add count columns to districts table
         add_columns(db_path, district_number)
-
-        # print duckdb info
-
 
         # get count statistics
         COUNT_trees = n_trees(db_path, district_number)
         COUNT_bldg = n_bldg(db_path, district_number)
         COUNT_res_bldg = n_res_bldg(db_path, district_number)
+        n_green_spaces(db_path, district_number)
         COUNT_n_res_bldg_near_gs = n_res_bldg_near_gs(db_path, district_number)
+        n_near_trees(db_path, district_number)
         COUNT_res_bldg_near_trees = n_res_bldg_near_trees(db_path, district_number)
         AREA_crown = a_crown(db_path, district_number)
-        
+
         # update table (normalize and fill NANs)
         update_table(db_path, district_number)
-        
+
         # export district to gdf
-        gdf = export_districts_to_gdf(db_path,district_number)
-        gdfs.append(gdf)
-        
-        print(gdf[['delomradenummer',
-                'grunnkretsnummer', 
-                'n_trees',
-                'n_bldg',
-                'n_res_bldg',
-                'n_res_bldg_near_gs',
-                'perc_near_gs',
-                'n_bldg_near_trees',
-                'perc_near_trees',
-                'a_crown',
-                'perc_crown']])
-        
+        gdf = export_districts_to_gdf(db_path, district_number)
+
+        print(
+            gdf[
+                [
+                    "delomradenummer",
+                    "grunnkretsnummer",
+                    "n_trees",
+                    "n_bldg",
+                    "n_res_bldg",
+                    "n_res_bldg_near_gs",
+                    "perc_near_gs",
+                    "n_bldg_near_trees",
+                    "perc_near_trees",
+                    "a_crown",
+                    "perc_crown",
+                ]
+            ]
+        )
+
         # save count statistics to csv
         export_all_tables_to_csv(db_path, reporting_dir)
 
         print(f"Finished running district number: {district_number}")
+        break
 
-    # organise gdf 
-    # concatenate all GeoDataFrames at once
-    gdf_all = pd.concat(gdfs, ignore_index=True)
-    gdf_sorted = gdf_all.sort_values(by='grunnkretsnummer', ascending=True)
-    gdf_sorted = gdf_sorted.round(2)
-    # drop if found
-    if 'st_geomfromwkb(geometry)' in gdf_sorted.columns:
-        gdf_sorted.drop(columns=['st_geomfromwkb(geometry)'], inplace=True)
-    
-    # Define the %-bins and labels
-    labels = ["no data", "0-25%", "25-50%", "50-75%", "75-100%"]
-    bins = pd.IntervalIndex.from_tuples([(-0.01, 25), (25, 50), (50, 75), (75, 100)])
-    dict = {
-        "nan":"no data", 
-        "(-0.01, 25.0]": "0-25%", 
-        "(25.0, 50.0]": "25-50%", 
-        "(50.0, 75.0]": "50-75%", 
-        "(75.0, 100.0]": "75-100%"
-        }
+    print("Finished running all districts")
+    return
 
-    # Near Residential Buildings % Categories
-    gdf_sorted['bldg_bins'] = pd.cut(gdf_sorted['perc_near_trees'], bins)
-    gdf_sorted['bldg_bins'] = gdf_sorted['bldg_bins'].astype(str)
-    gdf_sorted['labels_near_trees'] = gdf_sorted['bldg_bins'].map(dict)
-
-    # Near Green Space % Categories
-    gdf_sorted['gs_bins'] = pd.cut(gdf_sorted['perc_near_gs'], bins)
-    gdf_sorted['gs_bins'] = gdf_sorted['gs_bins'].astype(str)
-    gdf_sorted['labels_near_gs'] = gdf_sorted['gs_bins'].map(dict)
-
-    # Crown Coverate % Categories
-    gdf_sorted['crown_bins'] = pd.cut(gdf_sorted['perc_crown'], bins)
-    gdf_sorted['crown_bins'] = gdf_sorted['crown_bins'].astype(str)
-    gdf_sorted['labels_perc_crown'] = gdf_sorted['crown_bins'].map(dict)
-
-    gdf_sorted.drop(columns=['bldg_bins', 'gs_bins', 'crown_bins'], inplace=True)
-    
-    # sort columns 
-    new_order = ['OBJECTID', 'fylkesnummer', 'fylkesnavn', 'kommunenummer',
-        'kommunenavn', 'delomradenummer', 'delomradenavn', 'grunnkretsnummer',
-        'grunnkretsnavn', 'kilde_admin', 'kilde_befolkning', 'id_befolkning',
-        'year_pop_stat', 'pop_total', 'pop_elderly', 'a_district', 'a_unit',
-        'a_clipped', 'n_trees', 'n_bldg', 'n_res_bldg',
-        'n_res_bldg_near_gs', 'perc_near_gs', 'labels_near_gs',
-        'n_bldg_near_trees', 'perc_near_trees', 'labels_near_trees',
-        'a_crown', 'perc_crown','labels_perc_crown',  
-        'SHAPE_Length', 'SHAPE_Area', 'geometry']
-    
-    # Reorder the columns
-    gdf_sorted = gdf_sorted[new_order]
-    gdf.crs = "EPSG:25832"
-    
-    # export all districts to csv, geojosn and parquet
-    # Export GDF to file 
-    filepath = os.path.join(reporting_dir, f"{municipality}_{district_number}_treeVis_stat")
-
-    # Write to .parquet
-    gdf_sorted.to_parquet(os.path.join(filepath + '.parquet'))
-
-    # Write to .geojson with coord. ref. system epsg:25832
-    gdf_sorted.crs = "EPSG:25832"
-    gdf_sorted.to_file(os.path.join(filepath + '.geojson'), driver='GeoJSON')
-
-    # Write to .csv
-    gdf_sorted.to_csv(os.path.join(filepath + '.csv'))
 
 if __name__ == "__main__":
-
     # params
     municipality = "oslo"
-    district_numbers = range(30101, 30103)
-
+    # district_numbers = range(30101, 30161)
+    district_numbers = [30140]
     # path to data
     root = r"/data/P-Prosjekter2/"
     root_2 = r"/home/NINA.NO/willeke.acampo/Mounts/P-Prosjekter2/"
     data_path = os.path.join(
-        root, "152022_itree_eco_ifront_synliggjore_trars_rolle_i_okosyst", "TEMP"
+        root_2, "152022_itree_eco_ifront_synliggjore_trars_rolle_i_okosyst", "TEMP"
     )
 
     raw_dir = os.path.join(data_path, "oslo", "01_raw")
@@ -531,10 +734,12 @@ if __name__ == "__main__":
     reporting_dir = os.path.join(data_path, "oslo", "08_reporting")
 
     # duckdb database on P-drive
-    db_path = os.path.join(interim_dir, "oslo.db")
+    db_path = os.path.join(interim_dir, "oslo_gis_linux.db")
+
+    # remove duckdb database
+    # remove_duckdb_database(db_path)
+
     main(district_numbers, interim_dir, db_path, reporting_dir)
 
     # export all tables to csv
-    
-    # remove duckdb database
-    #remove_duckdb_database(db_path)
+    concat_all_csvs(raw_dir, reporting_dir, district_numbers)

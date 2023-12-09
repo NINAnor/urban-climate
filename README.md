@@ -32,9 +32,11 @@ Complete documentation is hosted on GitHub Pages: [Urban Climate Documentation](
 ## Getting Started
 This project utilizes the [Kedro Framework](https://docs.kedro.org/en/stable/index.html) to streamline data processing and analysis. See the documentation for detailed step by step instricutions on how to set up the project and run the project.
 
-1. **Docker | environment set up**
+1. **Environment set up**
 
-    The project is set up to run in a Docker container. Documentation on how to build and run the Docker image for this project can be found [here](https://ac-willeke.github.io/urban-climate/html/docker.html).
+    **Docker**
+
+    The project uses gdal, which can be hard to install. A Dockerfile is provided that uses a gdal image, so that he project can be run in acontainer. Documentation on how to build and run the Docker image for this project can be found [here](https://ac-willeke.github.io/urban-climate/html/docker.html).
 
     ```bash
     # Build container from Dockerfile
@@ -42,7 +44,23 @@ This project utilizes the [Kedro Framework](https://docs.kedro.org/en/stable/ind
     ``````
 
     Note that the containter contains no data, so please ensure to mount your data into the container (see `template_devcontainer.json`).
+    
+    <br>
+    
+    **Virtual Environement (.venv)**
 
+    If you have gdal bindings installed on your pc, you can also run the project in a virtual environment. A virtual environment can be set up using the following commands:
+
+    ```bash
+    # Create a virtual environment
+    python3 -m venv .venv
+    # Activate the virtual environment
+    source .venv/bin/activate
+    # Install the requirements
+    pip install -r requirements.txt
+    ``````
+
+    
 
 2. **Kedro | run the pipelines**
 
@@ -71,7 +89,7 @@ This project utilizes the [Kedro Framework](https://docs.kedro.org/en/stable/ind
     kedro run
     ```
 
-3. **Visualize the workflow**
+3. ** Kedro | visualize the workflow**
 
     The workflow can be visualized using the Kedro Viz tool. This tool can be accessed by running `kedro viz` in the terminal.
 

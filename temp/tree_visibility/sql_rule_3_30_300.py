@@ -711,7 +711,7 @@ def main(district_numbers, interim_dir, db_path, reporting_dir):
         export_all_tables_to_csv(db_path, reporting_dir)
 
         print(f"Finished running district number: {district_number}")
-        break
+        #break
 
     print("Finished running all districts")
     return
@@ -720,8 +720,8 @@ def main(district_numbers, interim_dir, db_path, reporting_dir):
 if __name__ == "__main__":
     # params
     municipality = "oslo"
-    # district_numbers = range(30101, 30161)
-    district_numbers = [30140]
+    district_numbers = range(30101, 30161)
+    #district_numbers = [30140]
     # path to data
     root = r"/data/P-Prosjekter2/"
     root_2 = r"/home/NINA.NO/willeke.acampo/Mounts/P-Prosjekter2/"

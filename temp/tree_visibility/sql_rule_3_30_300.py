@@ -14,7 +14,7 @@ import pandas as pd
 # convert geom from binary to shapely
 from shapely.wkb import loads
 
-def get_parquet_dict(district_number, interim_dir):
+def get_parquet_dict(district_number, parquet_dir):
     file_names = [
         f"districts_{district_number}",
         f"bldg_{district_number}",
@@ -23,7 +23,7 @@ def get_parquet_dict(district_number, interim_dir):
     ]
 
     parquet_dict = {
-        name: os.path.join(interim_dir, "per_district", "parquet", f"{name}.parquet")
+        name: os.path.join(parquet_dir, "per_district", f"{name}.parquet")
         for name in file_names
     }
 
@@ -53,21 +53,24 @@ def load_parquet_to_duckdb(input_parquet, output_table, db_path):
                 """
             )
             print(f"Loaded table: {output_table}")
-
-            # remove leading zeros from 'grunnkretsnummer' column
-            con.execute(
-                f"""
-                UPDATE {output_table}
-                SET grunnkretsnummer = TRIM(LEADING '0' FROM grunnkretsnummer)
-            """
-            )
-
-            # if col_name district_code exists, rename to grunnkretsnummer
+            
+            # get columns
             columns = (
                 con.execute(f"PRAGMA table_info({output_table})")
                 .fetch_df()["name"]
                 .tolist()
             )
+
+            # if col exists remove leading zeros from 'grunnkretsnummer' column
+            if "grunnkretsnummer" in columns:
+                con.execute(
+                    f"""
+                    UPDATE {output_table}
+                    SET grunnkretsnummer = TRIM(LEADING '0' FROM grunnkretsnummer)
+                """
+                )
+
+            # if col_name district_code exists, rename to grunnkretsnummer
             if "district_code" in columns:
                 # remove grunnkretsnummer column
                 con.execute(
@@ -134,7 +137,7 @@ def check_column_in_tables(db_path):
     return
 
 
-def print_duckdb_info(db_path):
+def print_duckdb_info(db_path, district_number):
     with duckdb.connect(database=db_path, read_only=False) as con:
         # load spatial extension
         con.install_extension("spatial")
@@ -147,7 +150,7 @@ def print_duckdb_info(db_path):
         print("Tables:", tables)
 
         # Print column names of district table
-        columns = con.execute("PRAGMA table_info(districts);").fetchall()
+        columns = con.execute(f"PRAGMA table_info(districts_{district_number});").fetchall()
         print("Columns of districts table:", columns)
     return
 
@@ -420,6 +423,14 @@ def a_crown(db_path, district_number, col_join="grunnkretsnummer"):
 
 
 def update_table(db_path, district_number):
+    print(f"District number: {district_number}")
+    # print district col names 
+    with duckdb.connect(database=db_path, read_only=False) as con:
+        columns = con.execute(
+            f"PRAGMA table_info(districts_{district_number});"
+        ).fetchall()
+        print("Columns of districts table:", columns)
+    
     with duckdb.connect(database=db_path, read_only=False) as con:
         # if NAN set to 0
         con.execute(
@@ -489,18 +500,23 @@ def export_all_tables_to_csv(db_path, reporting_dir):
             "SELECT name FROM sqlite_master WHERE type='table';"
         ).fetchall()
 
+        # Create folder if not exists
+        output_path = os.path.join(reporting_dir, "by_district")
+        if not os.path.exists(output_path):
+            os.makedirs(output_path)
+            
         # Export each table to csv
         for table in tables:
             table_name = table[0]
             df = pd.read_sql(f"SELECT * FROM {table_name}", con)
             df.to_csv(
-                os.path.join(reporting_dir, "by_district", f"{table_name}.csv"),
+                os.path.join(output_path, f"{table_name}.csv"),
                 index=False,
             )
     return
 
 
-def concat_all_csvs(raw_dir, reporting_dir, district_numbers):
+def concat_all_csvs(geojson_dir, reporting_dir, district_numbers, projection):
     dfs = []
     for district_number in district_numbers:
         df = pd.read_csv(
@@ -526,7 +542,7 @@ def concat_all_csvs(raw_dir, reporting_dir, district_numbers):
 
     # load districts table from .geojson to get geometry column
     df_districts = gpd.read_file(
-        os.path.join(raw_dir, f"{municipality}_districts.geojson")
+        os.path.join(geojson_dir, f"{municipality}_districts.geojson")
     )
 
     # convert "grunnkretsnummer" column to int64
@@ -615,7 +631,7 @@ def concat_all_csvs(raw_dir, reporting_dir, district_numbers):
 
     # Reorder the columns
     gdf_sorted = gdf_sorted[new_order]
-    gdf.crs = "EPSG:25832"
+    gdf.crs = f"EPSG:{projection}"
 
     # export all districts to csv, geojosn and parquet
     # Export GDF to file
@@ -625,7 +641,7 @@ def concat_all_csvs(raw_dir, reporting_dir, district_numbers):
     gdf_sorted.to_parquet(os.path.join(filepath + ".parquet"))
 
     # Write to .geojson with coord. ref. system epsg:25832
-    gdf_sorted.crs = "EPSG:25832"
+    gdf_sorted.crs = f"EPSG:{projection}"
     gdf_sorted.to_file(
         os.path.join(filepath + ".geojson"), driver="GeoJSON", encoding="utf-8"
     )
@@ -638,32 +654,38 @@ def concat_all_csvs(raw_dir, reporting_dir, district_numbers):
 
     return
 
+def check_parquet_files(parquet_dict):
+    
+    # check value in parquet_dict
+    for path in parquet_dict.values():
+        # load to pd and print df head
+        df = pd.read_parquet(path)
+        print(f"Cols: {df.columns}")
+        print(df.head())
 
-def main(district_numbers, interim_dir, db_path, reporting_dir):
-    # remove duckdb database
-    remove_duckdb_database(db_path)
+def main(district_numbers, parquet_dir, db_path, reporting_dir):
 
     # add district layer to duckdb
-    district_path = os.path.join(interim_dir, f"{municipality}_districts.parquet")
+    district_path = os.path.join(parquet_dir, f"{municipality}_districts.parquet")
+    green_space_path = os.path.join(parquet_dir, f"{municipality}_green_space.parquet")
+    tree_path = os.path.join(parquet_dir, f"{municipality}_tree_crowns.parquet")
+    
+    # load to duckdb
     load_parquet_to_duckdb(district_path, "districts", db_path)
-
-    # add green space layer to duckdb
-    green_space_path = os.path.join(interim_dir, f"{municipality}_green_space.parquet")
     load_parquet_to_duckdb(green_space_path, "green_space", db_path)
-
-    # add trees layer to duckdb
-    tree_path = os.path.join(interim_dir, f"{municipality}_tree_crowns.parquet")
     load_parquet_to_duckdb(tree_path, "tree_crowns", db_path)
 
-    # remove tables from previous run
+    # remove per_district tables from previous run
     remove_all_except_two(db_path, "districts", "green_space", "tree_crowns")
 
     for district_number in district_numbers:
         print(f"Running.. district number: {district_number}")
-
         # get parquet files
-        parquet_dict = get_parquet_dict(district_number, interim_dir)
-
+        parquet_dict = get_parquet_dict(district_number, parquet_dir)
+        
+        # CHECK FILES FIRST TIME YOU RUN NEW STUDY AREA
+        #check_parquet_files(parquet_dict)
+        
         # load parquet files to duckdb
         for table, parquet in parquet_dict.items():
             load_parquet_to_duckdb(
@@ -672,7 +694,7 @@ def main(district_numbers, interim_dir, db_path, reporting_dir):
 
         # add count columns to districts table
         add_columns(db_path, district_number)
-
+        
         # get count statistics
         COUNT_trees = n_trees(db_path, district_number)
         COUNT_bldg = n_bldg(db_path, district_number)
@@ -719,27 +741,36 @@ def main(district_numbers, interim_dir, db_path, reporting_dir):
 
 if __name__ == "__main__":
     # params
-    municipality = "oslo"
-    district_numbers = range(30101, 30161)
-    #district_numbers = [30140]
+    municipality = "bodo"
+    projection = 25833
+    #district_numbers = range(30101, 30161)
+    district_numbers = range(180401, 180411)
+
     # path to data
     root = r"/data/P-Prosjekter2/"
     root_2 = r"/home/NINA.NO/willeke.acampo/Mounts/P-Prosjekter2/"
     data_path = os.path.join(
-        root_2, "152022_itree_eco_ifront_synliggjore_trars_rolle_i_okosyst", "TEMP"
-    )
+        root_2, 
+        "152022_itree_eco_ifront_synliggjore_trars_rolle_i_okosyst", 
+        "data",
+        municipality
+        )
 
-    raw_dir = os.path.join(data_path, "oslo", "01_raw")
-    interim_dir = os.path.join(data_path, "oslo", "02_intermediate")
-    reporting_dir = os.path.join(data_path, "oslo", "08_reporting")
+    parquet_dir = os.path.join(data_path, "general","PARQUET")
+    geojson_dir = os.path.join(data_path, "general","GEOJSON")
+    reporting_dir = os.path.join(
+        data_path, 
+        "urban-tree-visibility", 
+        "rule_3_30_300"
+        )
 
     # duckdb database on P-drive
-    db_path = os.path.join(interim_dir, "oslo_gis_linux.db")
+    db_path = os.path.join(parquet_dir, "duckdb_temp.db")
 
     # remove duckdb database
     # remove_duckdb_database(db_path)
 
-    main(district_numbers, interim_dir, db_path, reporting_dir)
+    #main(district_numbers, parquet_dir, db_path, reporting_dir)
 
     # export all tables to csv
-    concat_all_csvs(raw_dir, reporting_dir, district_numbers)
+    concat_all_csvs(geojson_dir, reporting_dir, district_numbers, projection)

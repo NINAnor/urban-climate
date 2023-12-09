@@ -175,13 +175,14 @@ def main(geojson_dir, parquet_dir, municipality, table_names, projection, input_
 if __name__ == "__main__":
     
     # params
-    municipality = "bodo"
+    municipality = "oslo"
 
     # path to data
     root = r"/data/P-Prosjekter2/"
     root_2 = r"/home/NINA.NO/willeke.acampo/Mounts/P-Prosjekter2/"
+    root_3 = r"P:/"
     data_path = os.path.join(
-        root_2, 
+        root, 
         "152022_itree_eco_ifront_synliggjore_trars_rolle_i_okosyst", 
         "data",
         municipality,
@@ -192,19 +193,20 @@ if __name__ == "__main__":
     parquet_dir = os.path.join(data_path, "PARQUET")
     
     table_names = [
-        #"study_area", 
-        #"districts", 
-        #"bldg", 
-        #"res_bldg", 
-        #"green_space",
-        #"open_space", 
-        #"public_open_space", 
-        #"private_open_space", 
-        #"registered_trees",
-        "tree_crowns"
-        ]
-    
-    epsg = 25833
+        "study_area", 
+        "districts", 
+        "bldg", 
+        "res_bldg", 
+        "green_space",
+        "open_space", 
+        "public_open_space", 
+        "private_open_space", 
+        "registered_trees",
+        "tree_crowns",
+        "education_property",  # only oslo
+    ]
+
+    epsg = 25832
     
     # LOAD, CLEAN AND EXPORT FILES
     main(

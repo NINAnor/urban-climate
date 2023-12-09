@@ -161,11 +161,10 @@ def main(geojson_dir, parquet_dir, municipality, table_names, projection, input_
         )
     
     print(f"Exporting cleaned files to parquet...")    
-    output_dir_parquet = os.path.join(parquet_dir, "cleaned")
-    os.makedirs(output_dir_parquet, exist_ok=True)
+    os.makedirs(parquet_dir, exist_ok=True)
     export_parquet(
         gdf_dict = gdf_dict,
-        output_dir = output_dir_parquet,
+        output_dir = parquet_dir,
         municipality= municipality, 
         projection= projection
         )
@@ -193,15 +192,15 @@ if __name__ == "__main__":
     parquet_dir = os.path.join(data_path, "PARQUET")
     
     table_names = [
-        "study_area", 
-        "districts", 
-        "bldg", 
-        "res_bldg", 
-        "green_space",
-        "open_space", 
-        "public_open_space", 
-        "private_open_space", 
-        "registered_trees",
+        #"study_area", 
+        #"districts", 
+        #"bldg", 
+        #"res_bldg", 
+        #"green_space",
+        #"open_space", 
+        #"public_open_space", 
+        #"private_open_space", 
+        #"registered_trees",
         "tree_crowns"
         ]
     

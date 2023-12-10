@@ -22,13 +22,13 @@ def get_files_and_tables(geojson_dir, parquet_dir, municipality, table_names):
     return geojson_dict, parquet_dict, table_names
 
 
-def process_gdf(gdf, tbl):
+def process_gdf(gdf, tbl, projection):
     # remove areas smaller than 1m2 for all files except study_area and tree_crowns
     if tbl in ["study_area", "tree_crowns"]:
         print(f"Areas < 1m2 are not removed from {tbl}")
-        if gdf.crs.to_epsg() != 25832:
-            print(f"Reprojecting {tbl} to epsg:25832")
-            gdf = gdf.to_crs(epsg=25832)
+        if gdf.crs.to_epsg() != {projection}:
+            print(f"Reprojecting {tbl} to epsg:{projection}")
+            gdf = gdf.to_crs(epsg={projection})
         return gdf
     
     else: 
@@ -37,10 +37,10 @@ def process_gdf(gdf, tbl):
         len_after = len(gdf)
         print(f"Removed {len_before - len_after} rows from {tbl}")
     
-        # if epsg is not 25832, reproject
-        if gdf.crs.to_epsg() != 25832:
-            print(f"Reprojecting {tbl} to epsg:25832")
-            gdf = gdf.to_crs(epsg=25832)
+        # if epsg is not {projection}, reproject
+        if gdf.crs.to_epsg() != {projection}:
+            print(f"Reprojecting {tbl} to epsg:{projection}")
+            gdf = gdf.to_crs(epsg={projection})
     
     return gdf
     
@@ -111,7 +111,7 @@ def main(geojson_dir, parquet_dir, municipality, table_names):
     # {table_name: gdf}
     gdf_dict = {}
     
-    # Check if the parquet files exist, if not convert to parquet
+    # Check if the parquet files exist, if not continue
     for file_name, tbl in zip(parquet_dict.keys(), table_names):
         parquet_file = parquet_dict[file_name]
         
@@ -124,6 +124,10 @@ def main(geojson_dir, parquet_dir, municipality, table_names):
         # Open Parquet file
         gdf = gpd.read_parquet(parquet_file)
         print(f"Loaded {parquet_file}")
+        print(f"Number of rows: {len(gdf)}")
+        print(f"Columns: {gdf.columns}")
+        print(f"CRS: {gdf.crs}")
+        break
         
         # add to gdf_dict
         gdf_dict[tbl] = gdf 
@@ -136,7 +140,7 @@ def main(geojson_dir, parquet_dir, municipality, table_names):
 if __name__ == "__main__":
 
     # params
-    municipality = "bodo"
+    municipality = "baerum"
 
     # path to data
     root = r"/data/P-Prosjekter2/"
@@ -149,32 +153,34 @@ if __name__ == "__main__":
         "general"
         )
 
-    geojson_dir = os.path.join(data_path, "GEOJSON")
+    geojson_dir = os.path.join(data_path, "GEOJSON", "cleaned")
     parquet_dir = os.path.join(data_path, "PARQUET")
 
     # Define the table names
     file_names = [
-        f"{municipality}_study_area", 
+        #f"{municipality}_study_area", 
         f"{municipality}_districts",
         f"{municipality}_bldg",
         f"{municipality}_res_bldg",
         f"{municipality}_green_space",
-        f"{municipality}_open_space",
-        f"{municipality}_public_open_space",
-        f"{municipality}_private_open_space",
+        #f"{municipality}_open_space",
+        #f"{municipality}_public_open_space",
+        #f"{municipality}_private_open_space",
         f"{municipality}_tree_crowns"
         ]
 
     table_names = [
-        "study_area", 
+        #"study_area", 
         "districts", 
         "bldg", 
         "res_bldg", 
         "green_space",
-        "open_space", 
-        "public_open_space", 
-        "private_open_space", 
+        #"open_space", 
+        #"public_open_space", 
+        #"private_open_space", 
         "tree_crowns"
         ]
     
     main(geojson_dir, parquet_dir, municipality, table_names)
+    
+    

@@ -49,15 +49,19 @@ def export_by_district(gdf_dict, district_list, col_district, parquet_dir, geojs
     for number in district_list:
         # for each GeoDataFrame
         for name, gdf in gdf_dict.items():
+            
+            # convert col_district to int
+            number = int(number)
+            gdf[col_district] = gdf[col_district].astype(int)
+            
             # if col_district not in gdf.columns, continue
             if col_district not in gdf.columns:
                 print(f"{name} does not have a {col_district} column")
                 continue
             
             print(f"Exporting {name} for district {number}")
-
             gdf_fan = gdf[gdf[col_district] == number]
-            
+
             # if gdf_fan is empty, continue
             if gdf_fan.empty:
                 print(f"{name} for district {number} is an empty gdf")
@@ -123,18 +127,18 @@ def main(geojson_dir, parquet_dir, municipality, table_names):
         
         # Open Parquet file
         gdf = gpd.read_parquet(parquet_file)
-        print(f"Loaded {parquet_file}")
+        print(f"Loaded file {tbl}")
         print(f"Number of rows: {len(gdf)}")
         print(f"Columns: {gdf.columns}")
-        print(f"CRS: {gdf.crs}")
-        break
+        #print(f"Head: {gdf.head()}")
+
         
         # add to gdf_dict
         gdf_dict[tbl] = gdf 
         
     print(gdf_dict.keys())
-    print(gdf_dict["tree_crowns"].head())
-    export_by_district(gdf_dict, district_list, "delomradenummer",parquet_dir, geojson_dir)
+
+    export_by_district(gdf_dict, district_list, 'delomradenummer', parquet_dir, geojson_dir)
    
 
 if __name__ == "__main__":
@@ -158,26 +162,16 @@ if __name__ == "__main__":
 
     # Define the table names
     file_names = [
-        #f"{municipality}_study_area", 
         f"{municipality}_districts",
         f"{municipality}_bldg",
         f"{municipality}_res_bldg",
-        f"{municipality}_green_space",
-        #f"{municipality}_open_space",
-        #f"{municipality}_public_open_space",
-        #f"{municipality}_private_open_space",
         f"{municipality}_tree_crowns"
         ]
 
     table_names = [
-        #"study_area", 
         "districts", 
         "bldg", 
         "res_bldg", 
-        "green_space",
-        #"open_space", 
-        #"public_open_space", 
-        #"private_open_space", 
         "tree_crowns"
         ]
     

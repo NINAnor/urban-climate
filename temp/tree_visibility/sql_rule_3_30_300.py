@@ -740,11 +740,14 @@ def main(district_numbers, parquet_dir, db_path, reporting_dir):
 
 
 if __name__ == "__main__":
+    
+    # TODO move params to params.yml/catalog.yml
     # params
-    municipality = "bodo"
-    projection = 25833
-    #district_numbers = range(30101, 30161)
-    district_numbers = range(180401, 180411)
+    municipality = "baerum"
+    projection = 25832
+    #district_numbers = range(30101, 30161) # oslo
+    #district_numbers = range(180401, 180411) # bodo
+    district_numbers = range(302421, 302423) # baerum
 
     # path to data
     root = r"/data/P-Prosjekter2/"
@@ -768,9 +771,9 @@ if __name__ == "__main__":
     db_path = os.path.join(parquet_dir, "duckdb_temp.db")
 
     # remove duckdb database
-    # remove_duckdb_database(db_path)
+    remove_duckdb_database(db_path)
 
-    #main(district_numbers, parquet_dir, db_path, reporting_dir)
+    main(district_numbers, parquet_dir, db_path, reporting_dir)
 
     # export all tables to csv
     concat_all_csvs(geojson_dir, reporting_dir, district_numbers, projection)

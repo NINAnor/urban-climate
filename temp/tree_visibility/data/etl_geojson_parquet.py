@@ -132,7 +132,14 @@ def clean_for_excel(gdf, tbl, col_id = "crown_id"):
     df = gdf.drop(columns="geometry")
     
     # new col ID based on crown_id (remove all non numbers)
-    df["ID"] = df[col_id].str.replace(r"\D", "")
+    # if col is string (registered_trees), remove all non numbers
+    if df[col_id].dtype == "object":
+        df["ID"] = df[col_id].str.replace(r"\D", "")
+        # convert to numeric
+        import pandas as pd
+        df["ID"] = pd.to_numeric(df["ID"])
+    else:
+        df["ID"] = df[col_id]
     
     # sort by ID 
     df_sorted = df.sort_values(by="ID", ascending=True)
@@ -150,45 +157,42 @@ def clean_for_excel(gdf, tbl, col_id = "crown_id"):
     return df, df_summary
 
 def export_csv(gdf_dict, output_dir, municipality):
-    """ Export cleaned gdfs files to excel."""
+    """ Export cleaned gdfs files to csv."""
+    col_id_dict = {
+        "districts": "grunnkretsnummer",
+        "tree_crowns": "crown_id" if municipality != "oslo" else "OBJECTID",
+        "registered_trees": "tree_id" if municipality != "oslo" else "TREE_ID"
+    }
+
     for tbl, gdf in gdf_dict.items():
         # if file already exists in cleaned folder, skip
-        if not os.path.exists(os.path.join(output_dir, f"{municipality}_{tbl}.csv")):
-            if tbl == "districts":
-                col_id = "grunnkretsnummer"
-                df, df_summary = clean_for_excel(gdf, tbl, col_id)
-            if tbl == "tree_crowns":
-                col_id = "crown_id"
-                df, df_summary = clean_for_excel(gdf, tbl, col_id)
-            if tbl == "registered_trees":
-                col_id = "tree_id"
-                df, df_summary = clean_for_excel(gdf, tbl, col_id)
-            filepath = os.path.join(output_dir, f"{municipality}_{tbl}.csv")
-            filepath_summary = os.path.join(output_dir, f"{municipality}_{tbl}_summary.csv")
-            # use norwegian encoding
+        filepath = os.path.join(output_dir, f"{municipality}_{tbl}.csv")
+        filepath_summary = os.path.join(output_dir, f"{municipality}_{tbl}_summary.csv")
+
+        if not os.path.exists(filepath) and tbl in col_id_dict:
+            df, df_summary = clean_for_excel(gdf, tbl, col_id_dict[tbl])
             df.to_csv(filepath, encoding="utf-8")
             df_summary.to_csv(filepath_summary, encoding="utf-8")
-    return print(f"Exported cleaned {tbl}.")
+            print(f"Exported cleaned {tbl}.")
 
 def export_excel(gdf_dict, output_dir, municipality):
     """ Export cleaned gdfs files to csv."""
+    col_id_dict = {
+        "districts": "grunnkretsnummer",
+        "tree_crowns": "crown_id" if municipality != "oslo" else "OBJECTID",
+        "registered_trees": "tree_id" if municipality != "oslo" else "TREE_ID"
+    }
+
     for tbl, gdf in gdf_dict.items():
         # if file already exists in cleaned folder, skip
-        if not os.path.exists(os.path.join(output_dir, f"{municipality}_{tbl}.xlsx")):
-            if tbl == "districts":
-                col_id = "grunnkretsnummer"
-                df, df_summary = clean_for_excel(gdf, tbl, col_id)
-            if tbl == "tree_crowns":
-                col_id = "crown_id"
-                df, df_summary = clean_for_excel(gdf, tbl, col_id)
-            if tbl == "registered_trees":
-                col_id = "tree_id"
-                df, df_summary = clean_for_excel(gdf, tbl, col_id)
-            filepath = os.path.join(output_dir, f"{municipality}_{tbl}.xlsx")
-            filepath_summary = os.path.join(output_dir, f"{municipality}_{tbl}_summary.xlsx")
+        filepath = os.path.join(output_dir, f"{municipality}_{tbl}.xlsx")
+        filepath_summary = os.path.join(output_dir, f"{municipality}_{tbl}_summary.xlsx")
+
+        if not os.path.exists(filepath) and tbl in col_id_dict:
+            df, df_summary = clean_for_excel(gdf, tbl, col_id_dict[tbl])
             df.to_excel(filepath)
             df_summary.to_excel(filepath_summary)
-    return print(f"Exported cleaned {tbl}.")
+            print(f"Exported cleaned {tbl}.")
 
 def main(geojson_dir, parquet_dir, csv_dir, excel_dir, municipality, table_names, projection, input_format="geojson"):
     """ Load and clean geojson/parquet files to gdf_dict {table_name: gdf}.
@@ -268,19 +272,19 @@ def main(geojson_dir, parquet_dir, csv_dir, excel_dir, municipality, table_names
     )
     
     return None
-    
-    
+
+
 if __name__ == "__main__":
     
     # params
-    municipality = "bodo"
+    municipality = "oslo"
 
     # path to data
     root = r"/data/P-Prosjekter2/"
     root_2 = r"/home/NINA.NO/willeke.acampo/Mounts/P-Prosjekter2/"
     root_3 = r"P:/"
     data_path = os.path.join(
-        root_2, 
+        root, 
         "152022_itree_eco_ifront_synliggjore_trars_rolle_i_okosyst", 
         "data",
         municipality,
@@ -293,21 +297,20 @@ if __name__ == "__main__":
     excel_dir = os.path.join(data_path, "EXCEL")
     
     table_names = [
-        "study_area", 
+        #"study_area", 
         "districts", 
-        "bldg", 
-        "res_bldg", 
-        "green_space",
+        #"bldg", 
+        #"res_bldg", 
+        #"green_space",
         #"open_space", 
         #"public_open_space", 
         #"private_open_space", 
-        "registered_trees",
-        "tree_crowns",
-        "registered_trees",
+        #"registered_trees",
+        "tree_crowns"
         #"education_property",  # only oslo
     ]
 
-    epsg = 25833
+    epsg = 25832
     
     # LOAD, CLEAN AND EXPORT FILES
     main(

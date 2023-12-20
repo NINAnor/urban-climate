@@ -36,7 +36,8 @@ This project utilizes the [Kedro Framework](https://docs.kedro.org/en/stable/ind
 
     **Docker**
 
-    The project uses gdal, which can be hard to install. A Dockerfile is provided that uses a gdal image, so that he project can be run in acontainer. Documentation on how to build and run the Docker image for this project can be found [here](https://ac-willeke.github.io/urban-climate/html/docker.html).
+    The project uses gdal, which can be hard to install. A Dockerfile is provided that uses a gdal image, so that he project can be run in a 
+    container. Documentation on how to build and run the Docker image for this project can be found [here](https://ac-willeke.github.io/urban-climate/html/docker.html).
 
     ```bash
     # Build container from Dockerfile

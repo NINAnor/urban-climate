@@ -114,7 +114,7 @@ candidate_modelling_pipeline.regressor:
 
 active_modelling_pipeline.gdf_counterfactual:
   type: geopandas.GeoJSONDataset
-  filepath: data/07_model_outputs/${globals:municipality}_lst_counterfactual.geojson
+  filepath: data/07_model_output/${globals:municipality}_lst_counterfactual.geojson
 
 
 # ------------------------------------------------------------

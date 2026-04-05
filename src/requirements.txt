@@ -45,7 +45,7 @@ defusedxml==0.7.1
 distlib==0.3.7
 docutils==0.20.1
 duckdb==0.9.2
-dynaconf==3.2.4
+dynaconf==3.2.13
 earthengine-api==0.1.379
 eerepr==0.0.4
 entrypoints==0.4

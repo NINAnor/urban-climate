@@ -235,7 +235,7 @@ sphinxcontrib-serializinghtml==1.1.9
 SQLAlchemy==2.0.23
 stack-data==0.6.3
 starlette==0.27.0
-strawberry-graphql==0.215.1
+strawberry-graphql==0.312.3
 tenacity==8.2.3
 terminado==0.18.0
 text-unidecode==1.3

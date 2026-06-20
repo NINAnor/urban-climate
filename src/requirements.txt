@@ -107,7 +107,7 @@ jsonschema==4.20.0
 jsonschema-specifications==2023.11.1
 jupyter==1.0.0
 jupyter-console==6.6.3
-jupyter-server==1.24.0
+jupyter-server==2.20.0
 jupyter_client==7.4.9
 jupyter_core==5.5.0
 jupyterlab==3.5.3

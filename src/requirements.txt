@@ -81,7 +81,7 @@ googleapis-common-protos==1.61.0
 graphql-core==3.2.3
 greenlet==3.0.1
 h11==0.14.0
-httplib2==0.22.0
+httplib2==0.32.0
 httptools==0.6.1
 identify==2.5.32
 idna==3.6
